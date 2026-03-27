@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tools — Python & AI Workflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">py<span>flow</span></a>
+  <div class="nav-links">
+    <a href="index.html">Overview</a>
+    <a href="tools.html" class="active">The Tools</a>
+    <a href="workflow.html">How It Connects</a>
+    <a href="stacks.html">Choose Your Stack</a>
+    <a href="start.html">Get Started</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Overview</a>
+  <a href="tools.html">The Tools</a>
+  <a href="workflow.html">How It Connects</a>
+  <a href="stacks.html">Choose Your Stack</a>
+  <a href="start.html">Get Started</a>
+</div>
+
+<main>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-eyebrow">Reference</div>
+    <h1 class="page-title">The Tools</h1>
+    <p class="page-sub">Every major category explained — what it does, why it exists, and which options are worth knowing.</p>
+    <div class="toc">
+      <a href="#ides">IDEs & Editors</a>
+      <a href="#ai">AI Assistants</a>
+      <a href="#environments">Virtual Environments</a>
+      <a href="#git">Git & GitHub</a>
+      <a href="#packages">Package Management</a>
+    </div>
+  </div>
+</div>
+
+<!-- IDEs -->
+<section class="tool-section" id="ides">
+  <div class="container">
+    <div class="ts-header">
+      <div class="ts-num">01</div>
+      <div>
+        <h2>IDEs & Code Editors</h2>
+        <p class="ts-tagline">Where you write and understand code.</p>
+      </div>
+    </div>
+
+    <div class="explainer-block">
+      <div class="explainer-simple">
+        <div class="explainer-label">Simply put</div>
+        <p>An IDE is like a word processor — but for code. Notepad can write code. An IDE <em>understands</em> code. It highlights mistakes as you type, lets you jump to any function definition instantly, runs your programs with one click, and shows you the output inline. It's the central place where everything else (AI, Git, environments) plugs in.</p>
+      </div>
+      <div class="explainer-deep">
+        <div class="explainer-label">Going deeper</div>
+        <p>IDEs provide language servers (LSP) that analyze your code in real time, offering type checking, autocomplete, and inline documentation. They integrate debuggers (breakpoints, step-through execution, variable inspection), test runners, linters, and formatters. Modern editors are highly extensible via plugins — which is why the same editor can support Python, JavaScript, Rust, or SQL depending on what you install.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-section-title">The main options</h3>
+    <div class="tool-cards">
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon vscode-icon">⬡</div>
+          <div>
+            <h4>VS Code</h4>
+            <div class="tool-by">Microsoft · Free · All platforms</div>
+          </div>
+          <div class="tool-badge popular">Most popular</div>
+        </div>
+        <p>A lightweight but powerful editor that has become the default choice for most developers. It starts fast, has an enormous extension marketplace, and supports every language. Python support comes via Microsoft's Python extension.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Free and open source</div>
+          <div class="strength-item good">Massive extension library</div>
+          <div class="strength-item good">Excellent AI integration (Copilot, Claude, etc.)</div>
+          <div class="strength-item good">Fast startup, lightweight</div>
+          <div class="strength-item neutral">Python features require extensions</div>
+          <div class="strength-item neutral">Less opinionated — you configure your own workflow</div>
+        </div>
+        <div class="tool-best-for">Best for: Most people. Especially if you work across multiple languages or want maximum flexibility.</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon pycharm-icon">🐍</div>
+          <div>
+            <h4>PyCharm</h4>
+            <div class="tool-by">JetBrains · Free (Community) or Paid (Pro) · All platforms</div>
+          </div>
+          <div class="tool-badge python">Python-first</div>
+        </div>
+        <p>Built exclusively for Python (and web development in the Pro version). PyCharm understands Python deeply out of the box — no extensions needed. It handles virtual environments, testing, databases, and debugging with more depth than VS Code's Python extension.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Deepest Python support available</div>
+          <div class="strength-item good">Virtual environment management built-in</div>
+          <div class="strength-item good">Excellent debugger and test runner</div>
+          <div class="strength-item good">JetBrains AI built-in (Pro)</div>
+          <div class="strength-item neutral">Heavier, slower to start than VS Code</div>
+          <div class="strength-item neutral">Pro version costs money (~$100/yr, free for students)</div>
+        </div>
+        <div class="tool-best-for">Best for: Developers working primarily in Python who want everything configured for them.</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon cursor-icon">⌛</div>
+          <div>
+            <h4>Cursor</h4>
+            <div class="tool-by">Anysphere · Free tier + Paid · All platforms</div>
+          </div>
+          <div class="tool-badge ai-first">AI-first</div>
+        </div>
+        <p>A fork of VS Code built from the ground up around AI. Every feature is designed to maximize how much AI can help — it can see your whole codebase, understand context across files, and generate entire features at once. Feels like VS Code but with a much deeper AI layer.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Most advanced AI integration available</div>
+          <div class="strength-item good">Familiar if you know VS Code</div>
+          <div class="strength-item good">Supports Claude, GPT-4, and others as the underlying model</div>
+          <div class="strength-item neutral">Paid tier required for heavy AI use</div>
+          <div class="strength-item neutral">Newer — less mature than VS Code or PyCharm</div>
+        </div>
+        <div class="tool-best-for">Best for: Developers who want AI deeply embedded in every part of their editor experience.</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon zed-icon">▲</div>
+          <div>
+            <h4>Zed</h4>
+            <div class="tool-by">Zed Industries · Free · Mac & Linux</div>
+          </div>
+        </div>
+        <p>A new, extremely fast editor built for performance and collaboration. Real-time multiplayer coding is built in — multiple people can edit the same file simultaneously, like Google Docs. AI integration is growing.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Fastest editor available</div>
+          <div class="strength-item good">Built-in real-time collaboration</div>
+          <div class="strength-item neutral">Not available on Windows yet</div>
+          <div class="strength-item neutral">Smaller extension ecosystem</div>
+        </div>
+        <div class="tool-best-for">Best for: Performance-obsessed developers or teams that do a lot of pair programming.</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon jupyter-icon">📓</div>
+          <div>
+            <h4>Jupyter Notebook / JupyterLab</h4>
+            <div class="tool-by">Project Jupyter · Free · Browser-based</div>
+          </div>
+          <div class="tool-badge data">Data & analysis</div>
+        </div>
+        <p>Not a traditional IDE — Jupyter is a notebook environment where code, output, and explanatory text live together in one document. Run a cell, see the result immediately below it. Essential in data science and research. Can also be used inside VS Code and PyCharm as an extension.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Immediate output — ideal for exploration</div>
+          <div class="strength-item good">Mixes code, charts, and text in one document</div>
+          <div class="strength-item good">Industry standard in data science</div>
+          <div class="strength-item neutral">Not suited for large, structured applications</div>
+          <div class="strength-item neutral">Version control is messier with notebooks</div>
+        </div>
+        <div class="tool-best-for">Best for: Exploratory analysis, teaching, and research where seeing output immediately matters.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI Assistants -->
+<section class="tool-section alt-bg" id="ai">
+  <div class="container">
+    <div class="ts-header">
+      <div class="ts-num">02</div>
+      <div>
+        <h2>AI Assistants</h2>
+        <p class="ts-tagline">A collaborator that never leaves your editor.</p>
+      </div>
+    </div>
+
+    <div class="explainer-block">
+      <div class="explainer-simple">
+        <div class="explainer-label">Simply put</div>
+        <p>An AI assistant is a tool that can read your code and talk to you about it — writing new code, explaining what something does, finding bugs, suggesting improvements, or generating tests. Some live inside your IDE as extensions. Some are separate chat interfaces. Some are both. The best ones feel like having a very knowledgeable pair programmer on call at all times.</p>
+      </div>
+      <div class="explainer-deep">
+        <div class="explainer-label">Going deeper</div>
+        <p>Modern coding AI assistants are built on large language models (LLMs) fine-tuned for code. The key distinction is <strong>context window</strong> — how much of your code the model can see at once. A larger context window means smarter, more coherent suggestions. IDE-integrated tools can stream completions inline (autocomplete-style), while chat-based tools let you have a full conversation about architecture, debugging, or design choices. The distinction between "inline assistant" and "chat assistant" is blurring — most tools now do both.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-section-title">The main options</h3>
+    <div class="tool-cards">
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon claude-icon">◆</div>
+          <div>
+            <h4>Claude (Anthropic)</h4>
+            <div class="tool-by">Anthropic · Free + Paid · Web, API, IDE extensions</div>
+          </div>
+          <div class="tool-badge">Strong reasoning</div>
+        </div>
+        <p>Claude is a general-purpose AI assistant with exceptionally strong reasoning and code abilities. Available as a web chat (claude.ai), as an API for developers, and increasingly as IDE extensions (VS Code, Cursor). Claude Code is a terminal-based agentic tool where Claude can read, write, and run files autonomously.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Excellent at explaining complex code and concepts</div>
+          <div class="strength-item good">Very large context window (can read long files)</div>
+          <div class="strength-item good">Strong at debugging and architecture discussions</div>
+          <div class="strength-item good">Claude Code for autonomous agentic workflows</div>
+          <div class="strength-item neutral">IDE integration less seamless than Copilot</div>
+        </div>
+        <div class="tool-best-for">Best for: Understanding, explaining, and designing code. Deep problem-solving conversations.</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon copilot-icon">✦</div>
+          <div>
+            <h4>GitHub Copilot</h4>
+            <div class="tool-by">GitHub / Microsoft · Paid (~$10/mo, free for students) · All major IDEs</div>
+          </div>
+          <div class="tool-badge popular">Most used</div>
+        </div>
+        <p>The original AI coding assistant, built directly into VS Code, PyCharm, Vim, and others. Copilot watches what you're typing and suggests completions — sometimes a single word, sometimes an entire function. Also has a chat mode. Powered by OpenAI models under the hood.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Seamlessly integrated into most editors</div>
+          <div class="strength-item good">Excellent inline autocomplete</div>
+          <div class="strength-item good">Tight GitHub integration</div>
+          <div class="strength-item neutral">Subscription required after trial</div>
+          <div class="strength-item neutral">Less strong at deep reasoning than Claude</div>
+        </div>
+        <div class="tool-best-for">Best for: Day-to-day coding with inline suggestions. Pairs naturally with VS Code + GitHub.</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon jb-icon">🧠</div>
+          <div>
+            <h4>JetBrains AI</h4>
+            <div class="tool-by">JetBrains · Included with Pro plans · PyCharm, IntelliJ, etc.</div>
+          </div>
+        </div>
+        <p>JetBrains' native AI assistant, built into PyCharm Pro and other JetBrains IDEs. Deeply aware of your project structure, test results, and error context — because it has access to everything the IDE knows. Less known than Copilot but tightly integrated.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Deep IDE integration — understands your project fully</div>
+          <div class="strength-item good">Inline suggestions + chat mode</div>
+          <div class="strength-item neutral">Only useful if you're in a JetBrains IDE</div>
+        </div>
+        <div class="tool-best-for">Best for: PyCharm users who want AI without adding another tool.</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon chatgpt-icon">⬡</div>
+          <div>
+            <h4>ChatGPT</h4>
+            <div class="tool-by">OpenAI · Free + Paid · Web, mobile, API</div>
+          </div>
+        </div>
+        <p>The most widely known AI chat interface. Strong at code generation, explanation, and debugging when used via the chat interface. Not directly embedded in IDEs by default, but can be added via extensions. ChatGPT's code interpreter (in the paid tier) can actually run your code.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Familiar, widely used interface</div>
+          <div class="strength-item good">Can run code with the code interpreter</div>
+          <div class="strength-item neutral">Less IDE-integrated than Copilot or JetBrains AI</div>
+        </div>
+        <div class="tool-best-for">Best for: Quick questions, learning, and exploring ideas. Especially when you want to run code and see output without a local environment.</div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>IDE-integrated vs. chat-based AI</strong>
+        <p>These are different experiences, not competing ones. A chat-based AI (Claude, ChatGPT) is great for conversations — "explain this to me," "how should I structure this?" An IDE-integrated AI (Copilot, JetBrains AI) is great for inline help — completing what you're typing, suggesting the next line. Many developers use both: Copilot inside their editor for day-to-day suggestions, and Claude in a browser tab for harder questions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Virtual Environments -->
+<section class="tool-section" id="environments">
+  <div class="container">
+    <div class="ts-header">
+      <div class="ts-num">03</div>
+      <div>
+        <h2>Virtual Environments</h2>
+        <p class="ts-tagline">Keeping your projects clean and self-contained.</p>
+      </div>
+    </div>
+
+    <div class="explainer-block">
+      <div class="explainer-simple">
+        <div class="explainer-label">Simply put</div>
+        <p>Imagine you have two Python projects. Project A needs version 1 of a library. Project B needs version 2 of the same library. If you install both on the same Python installation, they conflict. A virtual environment solves this — it's a private, isolated copy of Python and its packages for each project. When you work on Project A, you activate its environment. Everything is separate.</p>
+      </div>
+      <div class="explainer-deep">
+        <div class="explainer-label">Going deeper</div>
+        <p>A virtual environment is a directory containing a Python interpreter (or a symlink to one), a <code>site-packages</code> folder for installed libraries, and activation scripts. When activated, your shell's PATH is modified so that <code>python</code> and <code>pip</code> refer to the environment's copies, not the system installation. This makes your project reproducible: a <code>requirements.txt</code> or <code>pyproject.toml</code> captures exactly which packages and versions are needed, so anyone can recreate the environment from scratch.</p>
+      </div>
+    </div>
+
+    <div class="analogy-block">
+      <div class="analogy-label">The analogy</div>
+      <p>Think of a virtual environment like a shipping container. Everything your project needs is packed inside it — the right version of Python, the right libraries, nothing more. You can move the container to any machine, open it, and everything works. Without it, you're throwing your tools into a shared toolbox with everyone else's, and eventually something breaks.</p>
+    </div>
+
+    <h3 class="sub-section-title">The main options</h3>
+    <div class="tool-cards two-col">
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon venv-icon">📦</div>
+          <div>
+            <h4>venv</h4>
+            <div class="tool-by">Built into Python · Free · All platforms</div>
+          </div>
+          <div class="tool-badge popular">Default choice</div>
+        </div>
+        <p>The built-in Python virtual environment tool. No installation required. Creates a <code>.venv</code> folder inside your project with everything isolated. The standard starting point for Python projects.</p>
+        <div class="code-block">
+          <div class="code-comment"># Create a virtual environment</div>
+          python -m venv .venv<br><br>
+          <div class="code-comment"># Activate it (Mac/Linux)</div>
+          source .venv/bin/activate<br><br>
+          <div class="code-comment"># Activate it (Windows)</div>
+          .venv\Scripts\activate
+        </div>
+        <div class="tool-best-for">Best for: Most Python projects. Simple, reliable, no extra installation.</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon conda-icon">🐍</div>
+          <div>
+            <h4>conda / Anaconda</h4>
+            <div class="tool-by">Anaconda Inc · Free (conda) · All platforms</div>
+          </div>
+          <div class="tool-badge data">Data science standard</div>
+        </div>
+        <p>A package and environment manager that goes beyond Python — it can also manage non-Python dependencies (like C libraries used by NumPy or OpenCV). Anaconda comes bundled with hundreds of data science packages pre-installed. conda is the command-line tool alone.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Handles non-Python dependencies</div>
+          <div class="strength-item good">Pre-packaged data science tools (Anaconda)</div>
+          <div class="strength-item neutral">Heavier than venv</div>
+          <div class="strength-item neutral">Can conflict with pip in subtle ways</div>
+        </div>
+        <div class="tool-best-for">Best for: Data science work, machine learning, or projects with complex C-extension dependencies.</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon uv-icon">⚡</div>
+          <div>
+            <h4>uv</h4>
+            <div class="tool-by">Astral · Free · All platforms</div>
+          </div>
+          <div class="tool-badge new">Rising fast</div>
+        </div>
+        <p>A new, extremely fast Python package installer and environment manager written in Rust. Replaces both pip and venv in one tool and is 10–100× faster. Rapidly gaining adoption in professional settings.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Dramatically faster than pip</div>
+          <div class="strength-item good">Manages Python versions too</div>
+          <div class="strength-item good">Drop-in replacement for pip and venv</div>
+          <div class="strength-item neutral">Newer — less documentation and community resources</div>
+        </div>
+        <div class="tool-best-for">Best for: Developers who want the fastest possible toolchain. Growing toward being the new default.</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon poetry-icon">📖</div>
+          <div>
+            <h4>Poetry</h4>
+            <div class="tool-by">Python Poetry · Free · All platforms</div>
+          </div>
+        </div>
+        <p>A complete dependency management and packaging tool. Uses <code>pyproject.toml</code> to declare all project dependencies and manages environments automatically. More opinionated than pip, but creates a cleaner, more reproducible setup.</p>
+        <div class="tool-strengths">
+          <div class="strength-item good">Clean dependency declarations</div>
+          <div class="strength-item good">Automatic lock files for reproducibility</div>
+          <div class="strength-item neutral">More concepts to learn upfront</div>
+        </div>
+        <div class="tool-best-for">Best for: Larger projects or teams where reproducibility and clean dependency management matter.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Git & GitHub -->
+<section class="tool-section alt-bg" id="git">
+  <div class="container">
+    <div class="ts-header">
+      <div class="ts-num">04</div>
+      <div>
+        <h2>Git & GitHub</h2>
+        <p class="ts-tagline">How code is saved, shared, and collaborated on.</p>
+      </div>
+    </div>
+
+    <div class="explainer-block">
+      <div class="explainer-simple">
+        <div class="explainer-label">Simply put</div>
+        <p><strong>Git</strong> is a tool that lives on your computer and tracks every change you make to your code — like a very detailed undo history that never expires. You can go back to any point in time, work on experiments without breaking anything, and merge changes from collaborators.</p>
+        <p><strong>GitHub</strong> is a website where your Git history lives in the cloud — so your code is backed up, shareable, and others can contribute. They're related but separate: Git is the technology; GitHub is the service built on top of it.</p>
+      </div>
+      <div class="explainer-deep">
+        <div class="explainer-label">Going deeper</div>
+        <p>Git is a distributed version control system. Each repository contains a complete history of every commit — a snapshot of the codebase at a point in time. Branches allow parallel lines of development; merges (and rebases) combine them. GitHub adds: remote repository hosting, pull requests (code review workflow), Issues (bug/feature tracking), Actions (CI/CD automation), and a social layer. GitLab and Bitbucket offer similar services with different trade-offs.</p>
+      </div>
+    </div>
+
+    <div class="git-concepts">
+      <h3 class="sub-section-title">Key concepts</h3>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="concept-term">Repository (repo)</div>
+          <p>A folder that Git is tracking. Contains your code and its entire history.</p>
+        </div>
+        <div class="concept-card">
+          <div class="concept-term">Commit</div>
+          <p>A saved snapshot of your code at a moment in time. Like hitting "save" — but you also write a note about what changed and why.</p>
+        </div>
+        <div class="concept-card">
+          <div class="concept-term">Branch</div>
+          <p>A parallel version of your code. Make changes without affecting the main version. Merge when ready.</p>
+        </div>
+        <div class="concept-card">
+          <div class="concept-term">Push / Pull</div>
+          <p>Push sends your commits to GitHub. Pull brings GitHub's latest changes to your machine.</p>
+        </div>
+        <div class="concept-card">
+          <div class="concept-term">Pull Request (PR)</div>
+          <p>A request to merge your branch into the main branch. This is where code review happens on GitHub.</p>
+        </div>
+        <div class="concept-card">
+          <div class="concept-term">Clone</div>
+          <p>Download a repository from GitHub to your computer — gets the full history, not just the latest files.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>Git vs GitHub vs GitLab vs Bitbucket</strong>
+        <p>Git is the tool. GitHub, GitLab, and Bitbucket are services that host your Git repositories online. GitHub is by far the most popular, especially for open source. GitLab is popular in enterprises and has more built-in CI/CD features. Bitbucket is common in organizations already using Atlassian tools (Jira, Confluence). The Git commands you type are identical regardless of which service you use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Package Management -->
+<section class="tool-section" id="packages">
+  <div class="container">
+    <div class="ts-header">
+      <div class="ts-num">05</div>
+      <div>
+        <h2>Package Management</h2>
+        <p class="ts-tagline">Installing and managing the libraries your code needs.</p>
+      </div>
+    </div>
+
+    <div class="explainer-block">
+      <div class="explainer-simple">
+        <div class="explainer-label">Simply put</div>
+        <p>Python has a vast ecosystem of open-source libraries — tools for data analysis (pandas), making web requests (requests), machine learning (scikit-learn), and thousands more. Package managers are how you install these libraries into your project. Think of them like an app store for Python code — you ask for what you need, and the package manager downloads and installs it.</p>
+      </div>
+      <div class="explainer-deep">
+        <div class="explainer-label">Going deeper</div>
+        <p>Python packages are distributed via PyPI (Python Package Index). A package manager resolves your package list, finds compatible versions of all dependencies (including dependencies-of-dependencies), downloads them, and places them in your virtual environment's <code>site-packages</code>. A <strong>lock file</strong> records the exact versions installed — so that running the same install command on another machine six months later produces the exact same environment.</p>
+      </div>
+    </div>
+
+    <div class="tool-cards two-col">
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon pip-icon">📥</div>
+          <div>
+            <h4>pip</h4>
+            <div class="tool-by">Built into Python · Free</div>
+          </div>
+          <div class="tool-badge popular">The default</div>
+        </div>
+        <p>The standard Python package installer. Ships with Python. Used to install packages from PyPI with a single command. Works with a <code>requirements.txt</code> file to capture and share your project's dependencies.</p>
+        <div class="code-block">
+          pip install pandas<br>
+          pip install -r requirements.txt<br>
+          pip freeze > requirements.txt
+        </div>
+        <div class="tool-best-for">Best for: Most situations. If you're not sure what to use, start here.</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon uv-icon">⚡</div>
+          <div>
+            <h4>uv (as a package manager)</h4>
+            <div class="tool-by">Astral · Free</div>
+          </div>
+          <div class="tool-badge new">Modern replacement</div>
+        </div>
+        <p>uv can replace pip entirely — it's a drop-in replacement that's dramatically faster. The command interface is similar to pip, making the switch easy.</p>
+        <div class="code-block">
+          uv add pandas<br>
+          uv sync<br>
+          uv pip install -r requirements.txt
+        </div>
+        <div class="tool-best-for">Best for: Developers who want the fastest possible install times.</div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">📋</div>
+      <div>
+        <strong>requirements.txt and pyproject.toml</strong>
+        <p>These are the two standard ways to declare what packages your project needs. <code>requirements.txt</code> is older and simpler — a plain list of packages. <code>pyproject.toml</code> is the modern standard — it also contains project metadata, tool configuration, and works with Poetry and uv. Both serve the same purpose: if someone else clones your project, they can install exactly what you're using.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="page-nav">
+  <a href="index.html" class="btn-ghost">← Overview</a>
+  <a href="workflow.html" class="btn-primary">How It Connects →</a>
+</div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-nav">
+      <a href="index.html">Overview</a>
+      <a href="tools.html">The Tools</a>
+      <a href="workflow.html">How It Connects</a>
+      <a href="stacks.html">Choose Your Stack</a>
+      <a href="start.html">Get Started</a>
+    </div>
+    <p class="footer-note">A clear guide to modern Python development — tools, workflow, and AI.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

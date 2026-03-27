@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Your Stack — Python & AI Workflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">py<span>flow</span></a>
+  <div class="nav-links">
+    <a href="index.html">Overview</a>
+    <a href="tools.html">The Tools</a>
+    <a href="workflow.html">How It Connects</a>
+    <a href="stacks.html" class="active">Choose Your Stack</a>
+    <a href="start.html">Get Started</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Overview</a>
+  <a href="tools.html">The Tools</a>
+  <a href="workflow.html">How It Connects</a>
+  <a href="stacks.html">Choose Your Stack</a>
+  <a href="start.html">Get Started</a>
+</div>
+
+<main>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-eyebrow">Comparisons</div>
+    <h1 class="page-title">Choose Your Stack</h1>
+    <p class="page-sub">Honest comparisons across every major tool category. The goal isn't to tell you what to use — it's to make the trade-offs clear so you can decide for yourself.</p>
+  </div>
+</div>
+
+<!-- IDE Comparison -->
+<section class="compare-section">
+  <div class="container">
+    <h2 class="compare-title">IDEs & Editors</h2>
+    <p class="compare-intro">The editor you spend your day in matters. Here's how the main options compare across the things that actually affect your work.</p>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>VS Code</th>
+            <th>PyCharm Community</th>
+            <th>PyCharm Pro</th>
+            <th>Cursor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cost</td>
+            <td class="good">Free</td>
+            <td class="good">Free</td>
+            <td class="neutral">~$100/yr (free for students)</td>
+            <td class="neutral">Free tier + ~$20/mo</td>
+          </tr>
+          <tr>
+            <td>Python support</td>
+            <td class="neutral">Good (via extension)</td>
+            <td class="good">Excellent (built-in)</td>
+            <td class="good">Excellent + web frameworks</td>
+            <td class="neutral">Good (VS Code base)</td>
+          </tr>
+          <tr>
+            <td>AI integration</td>
+            <td class="good">Excellent (Copilot, Claude ext.)</td>
+            <td class="neutral">Limited (community)</td>
+            <td class="good">JetBrains AI built-in</td>
+            <td class="good">Best-in-class (native)</td>
+          </tr>
+          <tr>
+            <td>GitHub integration</td>
+            <td class="good">Excellent</td>
+            <td class="good">Excellent</td>
+            <td class="good">Excellent</td>
+            <td class="good">Excellent</td>
+          </tr>
+          <tr>
+            <td>Virtual env management</td>
+            <td class="neutral">Manual setup required</td>
+            <td class="good">Built-in, auto-detects</td>
+            <td class="good">Built-in, auto-detects</td>
+            <td class="neutral">Manual (like VS Code)</td>
+          </tr>
+          <tr>
+            <td>Debugger</td>
+            <td class="good">Good</td>
+            <td class="good">Very good</td>
+            <td class="good">Best in class</td>
+            <td class="good">Good (VS Code base)</td>
+          </tr>
+          <tr>
+            <td>Startup speed</td>
+            <td class="good">Fast</td>
+            <td class="neutral">Slower</td>
+            <td class="neutral">Slower</td>
+            <td class="good">Fast</td>
+          </tr>
+          <tr>
+            <td>Multi-language support</td>
+            <td class="good">Excellent</td>
+            <td class="neutral">Python-focused</td>
+            <td class="neutral">Python + web</td>
+            <td class="good">Excellent</td>
+          </tr>
+          <tr>
+            <td>Jupyter notebooks</td>
+            <td class="good">Via extension</td>
+            <td class="neutral">Limited (community)</td>
+            <td class="good">Built-in</td>
+            <td class="good">Via extension</td>
+          </tr>
+          <tr>
+            <td>Learning curve</td>
+            <td class="neutral">Medium (configure yourself)</td>
+            <td class="good">Low (opinionated, clear UI)</td>
+            <td class="good">Low</td>
+            <td class="neutral">Medium</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="compare-verdict">
+      <div class="cv-item">
+        <div class="cv-label">If you want maximum flexibility and community</div>
+        <div class="cv-choice">→ VS Code</div>
+        <p>The most widely used editor in the world. Endless extensions, enormous community, works for every language. The trade-off is that you configure more yourself.</p>
+      </div>
+      <div class="cv-item">
+        <div class="cv-label">If you want the best Python experience, configured for you</div>
+        <div class="cv-choice">→ PyCharm (Community or Pro)</div>
+        <p>Nothing understands Python as deeply. If you're writing Python all day and want to spend zero time on tool configuration, PyCharm is the answer. Community is free and covers most needs. Pro adds database tools, web frameworks, and JetBrains AI.</p>
+      </div>
+      <div class="cv-item">
+        <div class="cv-label">If you want AI as a first-class part of your editor</div>
+        <div class="cv-choice">→ Cursor</div>
+        <p>Built from the ground up for AI-assisted development. If you want AI to read your entire codebase, understand context, and help you build features — not just autocomplete lines — Cursor is currently the best at this.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI Assistant comparison -->
+<section class="compare-section alt-bg">
+  <div class="container">
+    <h2 class="compare-title">AI Assistants</h2>
+    <p class="compare-intro">The right AI tool depends heavily on where you want help — inside the editor, in a chat, or both.</p>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>GitHub Copilot</th>
+            <th>Claude</th>
+            <th>ChatGPT</th>
+            <th>JetBrains AI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Inline autocomplete</td>
+            <td class="good">Best-in-class</td>
+            <td class="neutral">Via extension (growing)</td>
+            <td class="bad">Not primarily</td>
+            <td class="good">Built-in (JetBrains IDEs)</td>
+          </tr>
+          <tr>
+            <td>Chat interface</td>
+            <td class="neutral">In-IDE only</td>
+            <td class="good">Web + IDE extensions</td>
+            <td class="good">Web + mobile</td>
+            <td class="neutral">In-IDE only</td>
+          </tr>
+          <tr>
+            <td>Code reasoning quality</td>
+            <td class="neutral">Good</td>
+            <td class="good">Excellent</td>
+            <td class="good">Excellent</td>
+            <td class="neutral">Good</td>
+          </tr>
+          <tr>
+            <td>Context window (how much it can read)</td>
+            <td class="neutral">Limited to open files</td>
+            <td class="good">Very large (200k tokens)</td>
+            <td class="good">Large</td>
+            <td class="neutral">Project-aware via JetBrains</td>
+          </tr>
+          <tr>
+            <td>Codebase awareness</td>
+            <td class="neutral">Open files + some context</td>
+            <td class="good">Via Claude Code (full repo)</td>
+            <td class="bad">Paste manually</td>
+            <td class="good">Deep via JetBrains</td>
+          </tr>
+          <tr>
+            <td>Cost</td>
+            <td class="neutral">$10/mo (free for students)</td>
+            <td class="neutral">Free tier + $20/mo Pro</td>
+            <td class="neutral">Free tier + $20/mo Plus</td>
+            <td class="neutral">Included with JetBrains Pro</td>
+          </tr>
+          <tr>
+            <td>Best used for</td>
+            <td>Inline suggestions while typing</td>
+            <td>Explanation, design, complex debugging</td>
+            <td>Quick questions, code generation</td>
+            <td>PyCharm users who want native AI</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>Most developers use more than one</strong>
+        <p>The common pairing is Copilot inside the IDE (for autocomplete) and Claude or ChatGPT in a browser tab (for deeper questions). These tools complement each other — one is fast and inline, the other is thoughtful and conversational.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Environment comparison -->
+<section class="compare-section">
+  <div class="container">
+    <h2 class="compare-title">Virtual Environments & Package Managers</h2>
+    <p class="compare-intro">These two tool categories are closely related. Here's how to think about your choices.</p>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Manages envs</th>
+            <th>Manages packages</th>
+            <th>Speed</th>
+            <th>Complexity</th>
+            <th>Best for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>venv + pip</td>
+            <td class="good">✓</td>
+            <td class="good">✓</td>
+            <td class="neutral">Standard</td>
+            <td class="good">Low</td>
+            <td>Most Python projects. Default starting point.</td>
+          </tr>
+          <tr>
+            <td>conda</td>
+            <td class="good">✓</td>
+            <td class="good">✓ (non-Python too)</td>
+            <td class="neutral">Medium</td>
+            <td class="neutral">Medium</td>
+            <td>Data science, ML, complex C dependencies.</td>
+          </tr>
+          <tr>
+            <td>uv</td>
+            <td class="good">✓</td>
+            <td class="good">✓</td>
+            <td class="good">Fastest available</td>
+            <td class="good">Low (similar to pip)</td>
+            <td>Anyone who wants a modern, fast toolchain.</td>
+          </tr>
+          <tr>
+            <td>Poetry</td>
+            <td class="good">✓</td>
+            <td class="good">✓</td>
+            <td class="neutral">Standard</td>
+            <td class="neutral">Medium</td>
+            <td>Larger projects, teams, publishable packages.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="compare-verdict">
+      <div class="cv-item">
+        <div class="cv-label">Just starting out?</div>
+        <div class="cv-choice">→ venv + pip</div>
+        <p>Built into Python, no installation, enormous documentation. The right choice until you have a reason to switch.</p>
+      </div>
+      <div class="cv-item">
+        <div class="cv-label">Working in data science or ML?</div>
+        <div class="cv-choice">→ conda (or Anaconda)</div>
+        <p>Libraries like NumPy, TensorFlow, and OpenCV have non-Python dependencies that pip handles poorly. conda manages those too.</p>
+      </div>
+      <div class="cv-item">
+        <div class="cv-label">Want the fastest modern toolchain?</div>
+        <div class="cv-choice">→ uv</div>
+        <p>A drop-in replacement for pip that's 10-100x faster. Worth switching to as your comfort grows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recommended stacks -->
+<section class="stacks-section alt-bg">
+  <div class="container">
+    <h2 class="section-title">Recommended combinations</h2>
+    <p class="section-intro">Rather than choosing each tool in isolation, here are three coherent combinations that work well together.</p>
+
+    <div class="stack-cards">
+
+      <div class="stack-card stack-beginner">
+        <div class="stack-tag">Best starting point</div>
+        <h3>The Classic Stack</h3>
+        <div class="stack-tools">
+          <div class="stack-tool">VS Code</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">venv + pip</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">GitHub Copilot</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">GitHub</div>
+        </div>
+        <p>The most common combination in the industry. Everything is well-documented, widely used, and free or cheap. If you learn this stack, you can walk into any development environment in the world and feel at home. Start here unless you have a specific reason not to.</p>
+        <div class="stack-pros">
+          <div class="sp-item">Massive community and documentation</div>
+          <div class="sp-item">Works for every kind of Python project</div>
+          <div class="sp-item">Copilot free for students</div>
+        </div>
+      </div>
+
+      <div class="stack-card stack-python">
+        <div class="stack-tag">Best for pure Python work</div>
+        <h3>The Python-First Stack</h3>
+        <div class="stack-tools">
+          <div class="stack-tool">PyCharm Pro</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">venv (auto-managed)</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">JetBrains AI</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">GitHub</div>
+        </div>
+        <p>If you're working primarily in Python and want everything to just work without configuration, PyCharm Pro gives you the deepest Python integration available. Virtual environments are managed automatically. JetBrains AI is aware of your entire project, not just the open file. More expensive but more polished.</p>
+        <div class="stack-pros">
+          <div class="sp-item">Zero configuration for Python</div>
+          <div class="sp-item">Best debugger and test runner</div>
+          <div class="sp-item">Free for students via JetBrains academic program</div>
+        </div>
+      </div>
+
+      <div class="stack-card stack-ai">
+        <div class="stack-tag">Best for AI-heavy development</div>
+        <h3>The AI-First Stack</h3>
+        <div class="stack-tools">
+          <div class="stack-tool">Cursor</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">uv</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">Claude (via Cursor)</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">GitHub</div>
+        </div>
+        <p>For developers who want AI embedded in every part of their workflow. Cursor's agent can read your entire codebase, write files, and execute commands. uv keeps package management fast. This is the cutting-edge setup — powerful but slightly less mature than the other stacks.</p>
+        <div class="stack-pros">
+          <div class="sp-item">Most advanced AI capabilities</div>
+          <div class="sp-item">Fastest package toolchain</div>
+          <div class="sp-item">Codebase-aware AI suggestions</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="page-nav">
+  <a href="workflow.html" class="btn-ghost">← How It Connects</a>
+  <a href="start.html" class="btn-primary">Get Started →</a>
+</div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-nav">
+      <a href="index.html">Overview</a>
+      <a href="tools.html">The Tools</a>
+      <a href="workflow.html">How It Connects</a>
+      <a href="stacks.html">Choose Your Stack</a>
+      <a href="start.html">Get Started</a>
+    </div>
+    <p class="footer-note">A clear guide to modern Python development — tools, workflow, and AI.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
