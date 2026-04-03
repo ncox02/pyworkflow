@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Power User — Advanced Integrations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="ide-styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">py<span>flow</span></a>
+  <div class="nav-links">
+    <a href="index.html">Overview</a>
+    <a href="tools.html">The Tools</a>
+    <a href="ides.html">IDEs</a>
+    <a href="ai-assistants.html">AI Assistants</a>
+    <a href="workflow.html">How It Connects</a>
+    <a href="stacks.html">Choose Your Stack</a>
+    <a href="start.html">Get Started</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Overview</a>
+  <a href="tools.html">The Tools</a>
+  <a href="ides.html">IDEs</a>
+  <a href="ai-assistants.html">AI Assistants</a>
+  <a href="workflow.html">How It Connects</a>
+  <a href="stacks.html">Choose Your Stack</a>
+  <a href="start.html">Get Started</a>
+</div>
+
+<main>
+
+<div class="page-hero" style="border-bottom-color: rgba(123,108,255,0.2);">
+  <div class="container">
+    <div class="page-eyebrow" style="color: var(--accent2);">Advanced · Claude Code</div>
+    <h1 class="page-title">Claude Power User</h1>
+    <p class="page-sub">Seven integrations that transform Claude Code from a capable tool into a complete development environment. Each one adds something that Claude Code doesn't have by default — and together they add up to something significantly more powerful.</p>
+    <div class="toc">
+      <a href="#what-is-claude-code">What is Claude Code?</a>
+      <a href="#statusline">Statusline</a>
+      <a href="#superpowers">Superpowers</a>
+      <a href="#thinking">Sequential Thinking</a>
+      <a href="#context7">Context7</a>
+      <a href="#warp">Warp</a>
+      <a href="#mobile">Mobile</a>
+      <a href="#skills">Skills</a>
+    </div>
+  </div>
+</div>
+
+<!-- What is Claude Code -->
+<section class="tool-section" id="what-is-claude-code">
+  <div class="container">
+    <h2 class="section-title">Starting point: What is Claude Code?</h2>
+    <p>Before the integrations make sense, you need to understand the base. Claude Code is Anthropic's terminal-based AI coding agent — not an IDE, not a chat interface, but a command-line tool that can read, write, and run files in your project autonomously.</p>
+
+    <div class="ide-explainer-grid">
+      <div class="ide-explainer-card">
+        <div class="iec-label">How it differs from claude.ai</div>
+        <p>Claude.ai is a chat interface — you have a conversation. Claude Code is an agent — you give it tasks and it takes actions. It can list your files, read their contents, write new code, create files, run tests, read the output, and iterate. It's the difference between asking an assistant a question and giving one a task to complete.</p>
+      </div>
+      <div class="ide-explainer-card">
+        <div class="iec-label">How it relates to your IDE</div>
+        <p>Claude Code runs in your terminal — independently of your IDE, or alongside it. You might have VS Code open on the left and a terminal running Claude Code on the right. Claude Code sees your files; VS Code shows you what it changed. They complement each other.</p>
+      </div>
+      <div class="ide-explainer-card">
+        <div class="iec-label">The core capability</div>
+        <p>You describe a task in natural language. Claude Code reads your codebase for context, plans what to do, makes changes, runs the result, checks if it worked, and reports back. For the right tasks, this is dramatically faster than doing it yourself.</p>
+      </div>
+    </div>
+
+    <div class="code-block" style="margin-top: 1.5rem;">
+      <div class="code-comment"># Install Claude Code</div>
+      npm install -g @anthropic-ai/claude-code<br><br>
+      <div class="code-comment"># Navigate to your project and start a session</div>
+      cd my-project<br>
+      claude<br><br>
+      <div class="code-comment"># Claude Code opens — you describe what you want</div>
+      > Write tests for all functions in analysis.py and run them
+    </div>
+
+    <p style="margin-top: 1.25rem; color: var(--text2); font-size: 0.9rem; font-weight: 300;">Requires: Node.js 18+, an Anthropic API key (set as <code>ANTHROPIC_API_KEY</code> environment variable).</p>
+  </div>
+</section>
+
+<!-- Statusline -->
+<section class="tool-section alt-bg" id="statusline">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">01</div>
+      <div>
+        <h2>Statusline</h2>
+        <div class="int-sub">See what Claude Code is doing and how much it's costing, at a glance</div>
+      </div>
+    </div>
+
+    <p>When you run Claude Code, it works in your terminal — but by default you don't see a live summary of what's happening. The statusline is a persistent display in your terminal (or shell prompt) that shows you real-time information about your Claude Code session: which model is active, how many tokens you've used, estimated cost so far, your Git branch, and what Claude is currently doing.</p>
+
+    <div class="int-why">
+      <div class="int-why-label">Why it matters</div>
+      <p>Claude Code uses your API tokens with every action — and the cost can add up quickly in long sessions. The statusline makes that visible, so you can see when a task is consuming more resources than expected and course-correct before spending more than you intended. It also shows context window usage — critical for knowing when you're approaching the model's limit.</p>
+    </div>
+
+    <h3 class="sub-section-title">What the statusline shows</h3>
+    <div class="int-features">
+      <div class="int-feature">Model name (e.g. claude-opus-4)</div>
+      <div class="int-feature">Token usage — input and output</div>
+      <div class="int-feature">Estimated cost in USD for the session</div>
+      <div class="int-feature">Current Git branch</div>
+      <div class="int-feature">Context window percentage used</div>
+      <div class="int-feature">Current Claude Code state (thinking, running, idle)</div>
+    </div>
+
+    <h3 class="sub-section-title">Setup</h3>
+    <p>Several community statusline tools are available. The most popular options:</p>
+
+    <div class="setup-options">
+      <div class="setup-option">
+        <div class="so-header">
+          <div class="so-name">ccstatusline (recommended)</div>
+          <div class="so-cost">Free · Open source</div>
+        </div>
+        <p>A highly customizable statusline formatter for Claude Code CLI. Displays model info, git branch, token usage, and cost metrics directly in your terminal.</p>
+        <div class="code-block small">
+          <div class="code-comment"># Install via npm</div>
+          npm install -g ccstatusline<br><br>
+          <div class="code-comment"># Add to your shell config (.zshrc or .bashrc)</div>
+          eval "$(ccstatusline init)"<br><br>
+          <div class="code-comment"># Reload your shell</div>
+          source ~/.zshrc
+        </div>
+      </div>
+      <div class="setup-option">
+        <div class="so-header">
+          <div class="so-name">claude-code-statusline</div>
+          <div class="so-cost">Free · Open source</div>
+        </div>
+        <p>Enhanced 4-line statusline with themes, cost tracking, and MCP server monitoring. More visual than ccstatusline.</p>
+        <div class="code-block small">
+          npm install -g claude-code-statusline<br>
+          <div class="code-comment"># Follow repository instructions for shell integration</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Superpowers -->
+<section class="tool-section" id="superpowers">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">02</div>
+      <div>
+        <h2>Superpowers</h2>
+        <div class="int-sub">A skills framework that makes Claude Code behave like a senior developer</div>
+      </div>
+    </div>
+
+    <p>Superpowers is a plugin for Claude Code — the most starred Claude Code plugin on GitHub. Created by Jesse Vincent, it's a collection of 20+ carefully crafted "skills": pre-written instructions that tell Claude Code how to approach specific software engineering tasks with discipline and rigor.</p>
+
+    <div class="int-why">
+      <div class="int-why-label">Why it matters</div>
+      <p>By default, Claude Code will attempt any task you give it — but it improvises its approach. Superpowers injects proven workflows: it tells Claude to plan before coding, to write tests before implementation, to debug methodically rather than randomly, to review its own work before presenting it. The result is Claude Code that behaves more like a senior developer with a structured process rather than a fast but sometimes sloppy assistant.</p>
+    </div>
+
+    <h3 class="sub-section-title">What Superpowers includes</h3>
+    <div class="int-features">
+      <div class="int-feature">Planning mode — think before coding, outline the approach</div>
+      <div class="int-feature">Test-driven development (TDD) — write tests first</div>
+      <div class="int-feature">Systematic debugging — methodical bug isolation</div>
+      <div class="int-feature">Code review — review against best practices before presenting</div>
+      <div class="int-feature">Subagent spawning — delegate research to sub-processes</div>
+      <div class="int-feature">Documentation generation — consistent, thorough docs</div>
+      <div class="int-feature">Refactoring protocols — safe, incremental improvements</div>
+    </div>
+
+    <h3 class="sub-section-title">Setup</h3>
+    <div class="code-block">
+      <div class="code-comment"># Add the Superpowers marketplace to Claude Code</div>
+      claude plugin marketplace add obra/superpowers-marketplace<br><br>
+      <div class="code-comment"># Install the superpowers plugin</div>
+      claude plugin install superpowers<br><br>
+      <div class="code-comment"># Verify it's active</div>
+      claude plugin list
+    </div>
+    <p style="margin-top: 0.75rem; font-size: 0.88rem; color: var(--text2); font-weight: 300;">After installation, Superpowers is automatically active in all Claude Code sessions. You don't need to invoke it manually — it shapes how Claude approaches every task.</p>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>Superpowers is the first plugin most developers install</strong>
+        <p>If you only install one Claude Code enhancement, this is the one. The improvement in output quality — particularly planning and testing — is noticeable immediately. Many developers describe it as "making Claude feel smarter" because it enforces discipline that Claude has but doesn't always apply by default.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sequential Thinking -->
+<section class="tool-section alt-bg" id="thinking">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">03</div>
+      <div>
+        <h2>Sequential Thinking (MCP)</h2>
+        <div class="int-sub">Structured problem-solving for complex tasks</div>
+      </div>
+    </div>
+
+    <p>Sequential Thinking is an MCP (Model Context Protocol) server — a standardized way to give AI models access to external tools and capabilities. This specific MCP adds a "think step by step" capability to Claude Code: for complex tasks, it forces the model to break the problem into explicit steps, reason through each one, and only then produce code.</p>
+
+    <div class="int-why">
+      <div class="int-why-label">Why it matters</div>
+      <p>AI models (including Claude) sometimes jump to solutions too quickly on complex problems. Sequential Thinking adds a structured reasoning step before action — the model produces a visible chain of reasoning: "Step 1: understand the problem. Step 2: identify constraints. Step 3: consider approaches. Step 4: select and implement." This makes the reasoning visible, catchable when it goes wrong, and generally more correct for hard problems. Think of it as making Claude "think out loud."</p>
+    </div>
+
+    <div class="int-why" style="background: rgba(251,191,36,0.05); border-color: rgba(251,191,36,0.15);">
+      <div class="int-why-label" style="color: var(--neutral);">What MCP means</div>
+      <p>MCP (Model Context Protocol) is an open standard from Anthropic for how AI models connect to external tools and data sources. An MCP server is a small program that Claude Code can call — like a plugin, but following a standard protocol. Sequential Thinking, Context7, and many others are MCP servers. You add them to Claude Code's configuration once, and Claude can use them during sessions.</p>
+    </div>
+
+    <h3 class="sub-section-title">Setup</h3>
+    <div class="code-block">
+      <div class="code-comment"># Add Sequential Thinking MCP to Claude Code</div>
+      claude mcp add @modelcontextprotocol/server-sequential-thinking<br><br>
+      <div class="code-comment"># Verify it's registered</div>
+      claude mcp list
+    </div>
+    <p style="margin-top: 0.75rem; font-size: 0.88rem; color: var(--text2); font-weight: 300;">Once added, Claude Code will automatically use sequential thinking for complex tasks. You can also explicitly request it: "Use sequential thinking to plan this refactor before writing any code."</p>
+  </div>
+</section>
+
+<!-- Context7 -->
+<section class="tool-section" id="context7">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">04</div>
+      <div>
+        <h2>Context7</h2>
+        <div class="int-sub">Up-to-date library documentation, pulled directly into Claude's context</div>
+      </div>
+    </div>
+
+    <p>Context7 is an MCP server that solves one of the most common AI coding frustrations: outdated documentation. AI models are trained on data up to a cutoff date — so when you ask about a library, the model might be describing an older version with deprecated APIs, renamed methods, or missing features.</p>
+
+    <p>Context7 pulls current, version-specific documentation from official source repositories and injects it directly into Claude's context when you ask about a library. The model then answers based on the actual current state of the library, not its training data.</p>
+
+    <div class="int-why">
+      <div class="int-why-label">Why it matters</div>
+      <p>"Hallucinated APIs" — when an AI confidently uses a function that doesn't exist, or passes arguments in the wrong order — are one of the most common AI coding failure modes. Context7 directly addresses this. When you're working with pandas, FastAPI, Pydantic, or any other library that updates frequently, Context7 means Claude is looking at the actual current docs rather than what it memorized from training.</p>
+    </div>
+
+    <h3 class="sub-section-title">Setup</h3>
+    <div class="code-block">
+      <div class="code-comment"># Add Context7 MCP (no API key required for basic use)</div>
+      claude mcp add context7 -- npx -y @upstash/context7-mcp@latest<br><br>
+      <div class="code-comment"># Optional: get an Upstash API key for higher rate limits</div>
+      <div class="code-comment"># Set UPSTASH_CONTEXT7_TOKEN in your environment</div>
+    </div>
+
+    <h3 class="sub-section-title">How to use it</h3>
+    <p>Once installed, just add <code>use context7</code> to any prompt where you need current documentation:</p>
+    <div class="code-block">
+      <div class="code-comment"># Examples of prompts with Context7</div>
+      > Create a FastAPI endpoint that validates JSON input. use context7<br><br>
+      > How do I use the new pandas 2.0 copy-on-write behavior? use context7<br><br>
+      > Set up Pydantic v2 models with custom validators. use context7
+    </div>
+    <p style="margin-top: 0.75rem; font-size: 0.88rem; color: var(--text2); font-weight: 300;">Context7 resolves the library name, finds the current documentation, and injects the relevant sections before Claude answers your question.</p>
+  </div>
+</section>
+
+<!-- Warp -->
+<section class="tool-section alt-bg" id="warp">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">05</div>
+      <div>
+        <h2>Warp</h2>
+        <div class="int-sub">An AI-native terminal — not an IDE, but a complete rethinking of the command line</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-bottom: 2rem;">
+      <div class="callout-icon">📌</div>
+      <div>
+        <strong>Warp is not an IDE</strong>
+        <p>Warp is a <em>terminal</em> — the command-line interface where you run your programs, manage files, and interact with Git. Think of it as a next-generation replacement for the terminal built into VS Code, or Mac's Terminal app, or Windows Command Prompt. The difference: Warp has AI built into its core, not added as an afterthought. Warp 2.0 calls itself an "Agentic Development Environment" — a terminal designed from the start for AI-assisted workflows.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-section-title">What Warp is and how it differs from a regular terminal</h3>
+
+    <div class="ide-explainer-grid">
+      <div class="ide-explainer-card">
+        <div class="iec-label">Block-based output</div>
+        <p>Every command and its output is grouped into a "block" — a distinct unit you can copy, share, bookmark, and reference. No more scrolling through a wall of terminal output trying to find where one command ended and the next began.</p>
+      </div>
+      <div class="ide-explainer-card">
+        <div class="iec-label">AI command suggestions</div>
+        <p>Type <code>#</code> followed by a natural language description. Warp generates the correct terminal command. "# find all Python files modified in the last week" → <code>find . -name "*.py" -mtime -7</code>. No more Googling shell syntax.</p>
+      </div>
+      <div class="ide-explainer-card">
+        <div class="iec-label">Error explanation</div>
+        <p>Right-click any error in your output → "Explain this error." Warp reads the error message and explains what it means, what caused it, and how to fix it — without leaving the terminal.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-section-title">Warp's AI capabilities in detail</h3>
+
+    <div class="depth-items">
+      <div class="depth-item">
+        <h3>Agent mode (Warp 2.0)</h3>
+        <p>Warp 2.0 introduced a full coding agent. Give it a task in natural language and it plans the steps, runs the commands, reads the output, and iterates — similar to Claude Code, but integrated into the terminal interface with Warp's block-based visibility. Uses Claude (Sonnet or Haiku) as the default model, with GPT-4o as an alternative.</p>
+      </div>
+      <div class="depth-item">
+        <h3>Warp Drive</h3>
+        <p>A cloud-based library for saving and sharing: reusable commands, runbooks (interactive sequences of commands with documentation — think Jupyter notebooks for the terminal), environment variables, and prompts. Teams can share their common workflows, and the AI can search Warp Drive for relevant commands when helping you.</p>
+      </div>
+      <div class="depth-item">
+        <h3>Multi-model support</h3>
+        <p>Warp supports Claude 3.5 Sonnet/Haiku, GPT-4o, and (for enterprise) custom models. You can choose different models for different tasks — faster models for interactive suggestions, more capable models for complex agent tasks.</p>
+      </div>
+      <div class="depth-item">
+        <h3>Session sharing</h3>
+        <p>Share a live terminal session with a collaborator. They see your terminal in their browser — useful for debugging together or getting help from a colleague who doesn't have your environment.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-section-title">Warp + Claude Code: how they work together</h3>
+    <p>The most natural combination: run Claude Code <em>inside</em> Warp. Warp's block structure makes Claude Code's output more readable — each Claude Code action (reading a file, writing code, running a test) appears as a distinct block. Warp's error explanation complements Claude Code's debugging. And Warp Drive's shared prompts can store your most-used Claude Code task patterns.</p>
+
+    <div class="code-block">
+      <div class="code-comment"># Download Warp from warp.dev (Mac, Linux, Windows)</div>
+      <div class="code-comment"># Free tier: ~100 AI requests/month</div>
+      <div class="code-comment"># Pro: ~$20/mo for 2,500 requests</div>
+      <br>
+      <div class="code-comment"># In Warp: use # for AI command generation</div>
+      # list all Python files larger than 100KB in this project<br><br>
+      <div class="code-comment"># In Warp: right-click any error → Explain with AI</div>
+      <div class="code-comment"># In Warp: Ctrl+Shift+I for agent/dispatch mode</div>
+    </div>
+
+    <div class="int-why">
+      <div class="int-why-label">Who Warp is for</div>
+      <p>Warp is valuable for anyone who spends meaningful time in the terminal — running Python scripts, managing Git, working with package managers, debugging environment issues. If you're still using the built-in VS Code terminal or Mac's default Terminal, Warp is a direct upgrade. If you rarely use the terminal, the value is smaller.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Mobile -->
+<section class="tool-section" id="mobile">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">06</div>
+      <div>
+        <h2>Mobile</h2>
+        <div class="int-sub">Claude on your phone — and sending tasks to your desktop</div>
+      </div>
+    </div>
+
+    <p>Claude is available as a mobile app (iOS and Android) — the same Claude model you use on the desktop, accessible anywhere. For coding workflows, the use isn't about writing code on your phone. It's about staying connected to your work when you're away from your computer, and — increasingly — sending tasks to your desktop session remotely.</p>
+
+    <h3 class="sub-section-title">Mobile use cases that matter for developers</h3>
+
+    <div class="int-features">
+      <div class="int-feature">Review and discuss code snippets when away from your desk</div>
+      <div class="int-feature">Ask architectural questions during a commute, think through the answer</div>
+      <div class="int-feature">Get explanations of concepts you encountered earlier in the day</div>
+      <div class="int-feature">Take voice notes about coding ideas and have Claude structure them</div>
+      <div class="int-feature">Review AI-generated summaries of long documentation</div>
+    </div>
+
+    <div class="int-why">
+      <div class="int-why-label">Warp's mobile feature</div>
+      <p>Warp has a related mobile capability: you can send commands to your Warp session on your desktop from your phone. If you're running a long process on your desktop, you can check on it from your phone and even interact with it. This is niche but useful for developers who run long-running scripts or training jobs.</p>
+    </div>
+
+    <h3 class="sub-section-title">Setup</h3>
+    <div class="setup-options">
+      <div class="setup-option">
+        <div class="so-header">
+          <div class="so-name">Claude iOS / Android app</div>
+          <div class="so-cost">Free · Paid Pro unlocks higher usage</div>
+        </div>
+        <div class="so-steps">
+          <div class="so-step">Download "Claude" from the App Store or Google Play</div>
+          <div class="so-step">Sign in with your Anthropic account (same as claude.ai)</div>
+          <div class="so-step">All your conversations sync across desktop and mobile</div>
+          <div class="so-step">Voice input works natively — tap the microphone and speak your question</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="tool-section alt-bg" id="skills">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">07</div>
+      <div>
+        <h2>Skills</h2>
+        <div class="int-sub">Reusable instructions that extend what Claude Code knows how to do</div>
+      </div>
+    </div>
+
+    <p>Skills (sometimes called "slash commands" or "agent skills") are reusable instruction sets stored in your project or Claude Code configuration. When you invoke a skill, Claude Code reads those instructions and follows them for the current task. Think of skills as custom workflows you've encoded once, so you never have to re-explain them.</p>
+
+    <div class="int-why">
+      <div class="int-why-label">Why it matters</div>
+      <p>Every project has its own conventions: how tests are named, what linting rules apply, how docstrings are formatted, what the review checklist looks like. Without skills, you re-explain these conventions every session. With skills, you encode them once — and Claude Code follows them automatically. Skills also let you share these conventions across a team, so everyone's Claude Code sessions follow the same standards.</p>
+    </div>
+
+    <h3 class="sub-section-title">How skills work</h3>
+    <p>Skills are markdown files stored in a <code>.claude/skills/</code> directory in your project (or globally in <code>~/.claude/skills/</code>). Each skill is a prompt that Claude Code loads when you invoke it with a slash command.</p>
+
+    <div class="code-block">
+      <div class="code-comment"># Skills directory structure</div>
+      .claude/<br>
+      &nbsp;&nbsp;skills/<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;review.md       ← /review skill<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;test.md         ← /test skill<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;document.md     ← /document skill<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;refactor.md     ← /refactor skill
+    </div>
+
+    <h3 class="sub-section-title">Example: a code review skill</h3>
+    <div class="code-block">
+      <div class="code-comment"># .claude/skills/review.md</div>
+      <br>
+      You are performing a code review. For every function or class you review:<br>
+      1. Check for missing type hints and add them<br>
+      2. Check for missing docstrings and add them<br>
+      3. Identify any potential KeyError or AttributeError risks<br>
+      4. Flag any function longer than 30 lines and suggest how to split it<br>
+      5. Check that all error paths return or raise, never None silently<br>
+      6. Suggest meaningful names for any single-letter variables<br>
+      <br>
+      Report your findings in a numbered list before making any changes.<br>
+      Ask for confirmation before applying changes.
+    </div>
+
+    <h3 class="sub-section-title">Using skills in a session</h3>
+    <div class="code-block">
+      <div class="code-comment"># Invoke a skill with slash command syntax</div>
+      > /review analysis.py<br><br>
+      > /test utils.py --coverage-target 80%<br><br>
+      > /document src/
+    </div>
+
+    <h3 class="sub-section-title">Installing community skills (Superpowers)</h3>
+    <p>Rather than writing all your skills from scratch, you can install community skill collections. The Superpowers plugin (covered in section 02) is effectively a large, well-curated collection of skills for common software engineering tasks. You can also browse:</p>
+
+    <div class="int-features">
+      <div class="int-feature"><strong>Superpowers</strong> — 20+ engineering skills (TDD, debugging, planning, review)</div>
+      <div class="int-feature"><strong>Trail of Bits Security Skills</strong> — Security-focused code auditing and vulnerability detection</div>
+      <div class="int-feature"><strong>Official Anthropic skills</strong> — Published at claude.com/plugins</div>
+      <div class="int-feature"><strong>Awesome Claude Code</strong> — Community-curated list at github.com/hesreallyhim/awesome-claude-code</div>
+    </div>
+
+    <h3 class="sub-section-title">Writing your own skills</h3>
+    <p>The format is simple: a markdown file with plain-English instructions. Write what you'd tell a new team member about how to approach a task. The more specific, the better. Good skills describe: the steps to follow, what to check before finishing, what format to use for output, and what to ask the user if something is unclear.</p>
+
+    <div class="code-block">
+      <div class="code-comment"># Creating your first skill</div>
+      mkdir -p .claude/skills<br>
+      touch .claude/skills/myskill.md<br><br>
+      <div class="code-comment"># Write your instructions in the file, then invoke with:</div>
+      > /myskill [target]
+    </div>
+  </div>
+</section>
+
+<!-- Summary table -->
+<section class="tool-section">
+  <div class="container">
+    <h2 class="section-title">Quick reference — all seven</h2>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Integration</th>
+            <th>What it adds</th>
+            <th>Effort to set up</th>
+            <th>Install command</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>Statusline</td>
+            <td>Live cost and token tracking</td>
+            <td class="good">5 min</td>
+            <td><code>npm install -g ccstatusline</code></td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>Superpowers</td>
+            <td>Planning, TDD, review discipline</td>
+            <td class="good">2 min</td>
+            <td><code>claude plugin install superpowers</code></td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>Sequential Thinking</td>
+            <td>Structured reasoning before coding</td>
+            <td class="good">1 min</td>
+            <td><code>claude mcp add ...sequential-thinking</code></td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>Context7</td>
+            <td>Current library docs in context</td>
+            <td class="good">2 min</td>
+            <td><code>claude mcp add context7 -- npx ...</code></td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>Warp</td>
+            <td>AI-native terminal replacement</td>
+            <td class="neutral">15 min (download + setup)</td>
+            <td>Download from warp.dev</td>
+          </tr>
+          <tr>
+            <td>06</td>
+            <td>Mobile</td>
+            <td>Claude anywhere</td>
+            <td class="good">2 min</td>
+            <td>App Store / Google Play</td>
+          </tr>
+          <tr>
+            <td>07</td>
+            <td>Skills</td>
+            <td>Reusable project-specific workflows</td>
+            <td class="neutral">30+ min (writing skills)</td>
+            <td>Create <code>.claude/skills/*.md</code> files</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">🚀</div>
+      <div>
+        <strong>Recommended installation order</strong>
+        <p>Start with Superpowers (02) — it has the biggest immediate impact on output quality. Then add Context7 (04) — it prevents the most common AI coding mistakes. Then Statusline (01) so you can monitor usage. Sequential Thinking (03) next for complex work. Skills (07) develop over time as you identify patterns you want to encode. Warp (05) when you're ready to invest in your terminal. Mobile (06) whenever you want.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-nav">
+      <a href="index.html">Overview</a>
+      <a href="tools.html">The Tools</a>
+      <a href="ides.html">IDEs</a>
+      <a href="ai-assistants.html">AI Assistants</a>
+      <a href="workflow.html">How It Connects</a>
+      <a href="stacks.html">Choose Your Stack</a>
+      <a href="start.html">Get Started</a>
+    </div>
+    <p class="footer-note">A clear guide to modern Python development — tools, workflow, and AI.</p>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
