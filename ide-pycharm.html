@@ -13,25 +13,23 @@
 
 <nav class="nav">
   <a href="index.html" class="nav-logo">py<span>flow</span></a>
-  <div class="nav-links">
+    <div class="nav-links">
     <a href="index.html">Overview</a>
     <a href="tools.html">The Tools</a>
-    <a href="ides.html" class="active">IDEs</a>
-    <a href="ai-assistants.html">AI Assistants</a>
     <a href="workflow.html">How It Connects</a>
     <a href="stacks.html">Choose Your Stack</a>
     <a href="start.html">Get Started</a>
+    <a href="claude-power.html" style="color: var(--accent2);">Claude Advanced ✦</a>
   </div>
   <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
 </nav>
 <div class="mobile-nav" id="mobileNav">
   <a href="index.html">Overview</a>
   <a href="tools.html">The Tools</a>
-  <a href="ides.html">IDEs</a>
-  <a href="ai-assistants.html">AI Assistants</a>
   <a href="workflow.html">How It Connects</a>
   <a href="stacks.html">Choose Your Stack</a>
   <a href="start.html">Get Started</a>
+  <a href="claude-power.html">Claude Advanced ✦</a>
 </div>
 
 <main>
@@ -300,6 +298,84 @@
       <div>
         <strong>Students get Professional for free</strong>
         <p>JetBrains has a student/educator program — apply at jetbrains.com/student with a .edu email. You get a full license to PyCharm Professional (and all other JetBrains IDEs) at no cost for as long as you're a student. This includes JetBrains AI. There is almost no reason for a student not to take advantage of this.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Try It Out -->
+<section class="ide-section" id="try-it">
+  <div class="container">
+    <h2>Try it out — a 10-minute exercise</h2>
+    <p class="section-intro-sm">PyCharm's AI integration is more visual than VS Code — menus, right-click options, and visual diff views. This exercise walks you through using JetBrains AI (or Copilot if you're on Community edition) for a simple task, taking advantage of PyCharm's unique Python depth along the way.</p>
+
+    <div class="tryit-steps">
+
+      <div class="tryit-step">
+        <div class="ts-badge">Before you start</div>
+        <div class="ts-body">
+          <p>Open PyCharm with any Python project (or create a new one: File → New Project). Make sure your interpreter is set (bottom-right status bar shows a Python version). Create a file called <code>practice.py</code>. If you have Pro, JetBrains AI is available in the right sidebar. Community users: install GitHub Copilot from Settings → Plugins → Marketplace.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 1 — Write a function with AI completion</div>
+        <div class="ts-body">
+          <p>Type this comment and press Enter:</p>
+          <div class="code-block small">
+            <div class="code-comment"># Function to calculate compound interest</div>
+          </div>
+          <p>Start typing <code>def</code> — PyCharm's AI suggests the function. Accept with Tab. Notice PyCharm's type checking already active: hover over any parameter to see what type it expects. This is PyCharm's native Python understanding, before any AI is involved.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 2 — Jump to definition</div>
+        <div class="ts-body">
+          <p>If the AI used any standard library function (like <code>round()</code> or <code>math.pow()</code>), hold Cmd/Ctrl and click it. PyCharm jumps to the source definition. This works on your own code too — click any function name anywhere in your project and you'll land at where it was defined. Try it with a library function you don't recognize.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 3 — Use AI Actions to improve the code</div>
+        <div class="ts-body">
+          <p>Select the entire function. Right-click → <strong>AI Actions</strong> → <strong>Suggest Refactoring</strong>. PyCharm shows AI suggestions in a panel on the right. Read them — do they make sense? You can also try: <strong>AI Actions → Add Error Handling</strong> to see what it adds.</p>
+          <p>Every suggestion shows a diff (before/after). Accept what you want, reject the rest.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 4 — Run with the debugger</div>
+        <div class="ts-body">
+          <p>Add a call to your function at the bottom of the file:</p>
+          <div class="code-block small">result = compound_interest(1000, 0.05, 10)<br>print(result)</div>
+          <p>Click in the grey gutter next to the <code>print</code> line — a red dot appears (breakpoint). Press <kbd>Shift+F9</kbd> to run in debug mode. Execution pauses at the breakpoint. In the bottom panel, you can see <code>result</code>'s actual value. This is the debugger — click the variable name to inspect it.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 5 — Ask AI in the chat panel</div>
+        <div class="ts-body">
+          <p>Open the AI chat panel (right sidebar, or View → Tool Windows → AI Assistant). Ask:</p>
+          <div class="code-block small">What's the difference between compound_interest and simple_interest? Can you add a simple interest function below this one for comparison?</div>
+          <p>The AI can see your open file. It generates the new function. Review it, then click <strong>Insert at Caret</strong> to add it to your file.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 6 — Generate a docstring</div>
+        <div class="ts-body">
+          <p>Place your cursor inside one of the functions. Right-click → <strong>AI Actions → Generate Docstring</strong>. PyCharm writes a complete docstring — parameter descriptions, return value, type hints. Read it. Edit anything that isn't quite right. This is the whole point: AI gets you 80% of the way there, you refine the rest.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>What makes PyCharm's approach different</strong>
+        <p>Every AI action in PyCharm is accessible via right-click on selected code. You don't need to type prompts from scratch — the menu shows you what's possible. This is intentional: PyCharm is opinionated about workflow. If you find yourself not knowing what to ask AI, right-click your code and see what PyCharm suggests. Often the right action is already listed.</p>
       </div>
     </div>
   </div>

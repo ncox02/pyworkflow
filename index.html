@@ -15,8 +15,8 @@
   <div class="nav-links">
     <a href="index.html" class="active">Overview</a>
     <a href="tools.html">The Tools</a>
-    <a href="ides.html">IDEs</a>
-    <a href="ai-assistants.html">AI Assistants</a>
+    
+    
     <a href="workflow.html">How It Connects</a>
     <a href="stacks.html">Choose Your Stack</a>
     <a href="start.html">Get Started</a>
@@ -27,8 +27,8 @@
 <div class="mobile-nav" id="mobileNav">
   <a href="index.html">Overview</a>
   <a href="tools.html">The Tools</a>
-  <a href="ides.html">IDEs</a>
-  <a href="ai-assistants.html">AI Assistants</a>
+  
+  
   <a href="workflow.html">How It Connects</a>
   <a href="stacks.html">Choose Your Stack</a>
   <a href="start.html">Get Started</a>
@@ -140,9 +140,65 @@
   </div>
 </section>
 
-<!-- The key insight -->
-<section class="insight">
+<!-- Levels framework -->
+<section class="levels-section">
   <div class="container">
+    <div class="section-label">A framework for where you are</div>
+    <h2 class="section-title">What level are you at?</h2>
+    <p class="section-intro">A useful way to think about AI coding tools — described by researcher Kyle Jensen — is a ladder with distinct rungs. Most people start at Level 0 or 1. Understanding where you are helps you know what's possible next.</p>
+
+    <div class="levels-list">
+
+      <div class="level-item level-0">
+        <div class="level-badge">Level 0–1</div>
+        <div class="level-content">
+          <h3>Browser chat + copy-paste</h3>
+          <p>You're using ChatGPT or Claude in a browser tab. You describe a problem, get code back, paste it into your editor, run it, hit an error, copy the error back up, and repeat. Or you have Copilot in your IDE doing inline suggestions — helpful, but still basically a chat loop. This is where most people start. <strong>This is where most students are.</strong></p>
+          <div class="level-note">There's nothing wrong with this. It works. But it's slow, and there's a lot more available.</div>
+        </div>
+      </div>
+
+      <div class="level-item level-2">
+        <div class="level-badge">Level 2</div>
+        <div class="level-content">
+          <h3>Agentic IDE (Cursor)</h3>
+          <p>You have an AI-first editor like Cursor. You tell the AI what you want, and it edits files, reads your codebase, and works across multiple files at once — still inside the editor, but with much more autonomy. The AI isn't just suggesting; it's doing. You review diffs and decide what to keep.</p>
+          <div class="level-note">This is where the IDE deep-dive pages on this site are targeted.</div>
+        </div>
+      </div>
+
+      <div class="level-item level-3">
+        <div class="level-badge">Level 3</div>
+        <div class="level-content">
+          <h3>Dedicated coding agents (Claude Code)</h3>
+          <p>Tools like Claude Code, OpenAI Codex CLI, and Gemini CLI run in your terminal and have access to your <em>full computing environment</em> — not just open editor files. They can think about a task, read and write any file, run scripts, see the output, and iterate autonomously. The IDE becomes optional; the terminal is the interface.</p>
+          <div class="level-note">This is what the <a href="claude-power.html" style="color: var(--accent2);">Claude Advanced</a> section covers.</div>
+        </div>
+      </div>
+
+      <div class="level-item level-4">
+        <div class="level-badge">Level 4</div>
+        <div class="level-content">
+          <h3>Connected agents (MCP tools)</h3>
+          <p>You add external capabilities to your agent via MCP (Model Context Protocol) — connecting it to databases, live documentation, web search, and other APIs. The agent can now pull current library docs, query your database, or search the web while it codes. Superpowers, Context7, and Sequential Thinking from the Claude Advanced page are Level 4 tools.</p>
+        </div>
+      </div>
+
+      <div class="level-item level-5">
+        <div class="level-badge">Level 5</div>
+        <div class="level-content">
+          <h3>Fully autonomous runs</h3>
+          <p>You give the agent a goal, set it running in a container, and come back an hour later. This is what people mean when they say "AI wrote a whole feature by itself." It's real, but requires significant setup, careful scoping, and thorough review of the result. Not inherently better — just more autonomous.</p>
+          <div class="level-note">All levels use the same underlying AI model. The difference is how much structure, access, and autonomy you give it.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- The key insight -->
+<section class="insight">  <div class="container">
     <div class="insight-inner">
       <div class="insight-quote">"The tools change.<br>The workflow doesn't."</div>
       <div class="insight-body">
@@ -190,8 +246,8 @@
     <div class="footer-nav">
       <a href="index.html">Overview</a>
       <a href="tools.html">The Tools</a>
-      <a href="ides.html">IDEs</a>
-      <a href="ai-assistants.html">AI Assistants</a>
+      
+      
       <a href="workflow.html">How It Connects</a>
       <a href="stacks.html">Choose Your Stack</a>
       <a href="start.html">Get Started</a>

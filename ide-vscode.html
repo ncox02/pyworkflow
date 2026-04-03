@@ -13,25 +13,23 @@
 
 <nav class="nav">
   <a href="index.html" class="nav-logo">py<span>flow</span></a>
-  <div class="nav-links">
+    <div class="nav-links">
     <a href="index.html">Overview</a>
     <a href="tools.html">The Tools</a>
-    <a href="ides.html" class="active">IDEs</a>
-    <a href="ai-assistants.html">AI Assistants</a>
     <a href="workflow.html">How It Connects</a>
     <a href="stacks.html">Choose Your Stack</a>
     <a href="start.html">Get Started</a>
+    <a href="claude-power.html" style="color: var(--accent2);">Claude Advanced ✦</a>
   </div>
   <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
 </nav>
 <div class="mobile-nav" id="mobileNav">
   <a href="index.html">Overview</a>
   <a href="tools.html">The Tools</a>
-  <a href="ides.html">IDEs</a>
-  <a href="ai-assistants.html">AI Assistants</a>
   <a href="workflow.html">How It Connects</a>
   <a href="stacks.html">Choose Your Stack</a>
   <a href="start.html">Get Started</a>
+  <a href="claude-power.html">Claude Advanced ✦</a>
 </div>
 
 <main>
@@ -427,6 +425,100 @@
             <p>Creating and managing virtual environments is done via the terminal or command palette. PyCharm has a visual UI for this. Small difference, but relevant for beginners.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Try It Out -->
+<section class="ide-section" id="try-it">
+  <div class="container">
+    <h2>Try it out — a 10-minute exercise</h2>
+    <p class="section-intro-sm">This walks you through the complete AI-assisted coding loop in VS Code, from writing a function to running it and refining it with AI help. By the end you'll have used every major AI capability at least once.</p>
+
+    <div class="tryit-steps">
+
+      <div class="tryit-step">
+        <div class="ts-badge">Before you start</div>
+        <div class="ts-body">
+          <p>Make sure you have VS Code open with the Python extension installed, a virtual environment active, and GitHub Copilot (or any AI extension) installed. Create a new file called <code>practice.py</code>.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 1 — Let AI write the first function</div>
+        <div class="ts-body">
+          <p>In <code>practice.py</code>, type this comment on the first line and press Enter:</p>
+          <div class="code-block small">
+            <div class="code-comment"># Calculate the percentage change between two numbers</div>
+          </div>
+          <p>Copilot will suggest the function. Press <kbd>Tab</kbd> to accept it. Read what it wrote — don't just accept blindly. Does it handle the case where <code>old_value</code> is zero? If not, that's something to fix.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 2 — Run it and see what happens</div>
+        <div class="ts-body">
+          <p>Add two lines below the function and run the file:</p>
+          <div class="code-block small">
+            result = percentage_change(100, 150)<br>
+            print(result)
+          </div>
+          <p>Press F5 (or right-click → Run Python File). You should see <code>50.0</code> in the terminal. If you get an error, that's fine — read it carefully. It usually tells you exactly what's wrong.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 3 — Ask AI to explain what it wrote</div>
+        <div class="ts-body">
+          <p>Select the entire function with your mouse. Then open the Copilot Chat panel (the speech bubble icon in the left sidebar, or <kbd>Ctrl+Shift+I</kbd>). Type:</p>
+          <div class="code-block small">Explain this function line by line. What does it return and why?</div>
+          <p>Read the explanation. This is the learning loop — AI writes, you ask it to teach you. You should understand every line before moving on.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 4 — Ask AI to improve it</div>
+        <div class="ts-body">
+          <p>In the chat panel, type:</p>
+          <div class="code-block small">Rewrite this function to handle the case where old_value is zero. Return None in that case and print a warning message.</div>
+          <p>The AI will rewrite it. Read the new version. Does it look right? If you don't understand a part, ask: <em>"What does the <code>if</code> statement on line 3 do?"</em></p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 5 — Control how much AI generates</div>
+        <div class="ts-body">
+          <p>If the AI wrote too much or too little, you can always guide it. Try:</p>
+          <ul style="padding-left: 1.25rem; margin: 0.5rem 0;">
+            <li style="font-size:0.87rem; color: var(--text2); margin-bottom:4px;"><em>"Keep it shorter — just the function, no extra comments"</em></li>
+            <li style="font-size:0.87rem; color: var(--text2); margin-bottom:4px;"><em>"Add a docstring explaining the parameters"</em></li>
+            <li style="font-size:0.87rem; color: var(--text2)"><em>"Show me a simpler version with no error handling"</em></li>
+          </ul>
+          <p>You're in charge of scope. AI responds to constraints. The more specific you are, the more targeted the output.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 6 — Run the final version</div>
+        <div class="ts-body">
+          <p>Test the improved function with a few inputs:</p>
+          <div class="code-block small">
+            print(percentage_change(100, 150))   <span class="code-comment"># should print 50.0</span><br>
+            print(percentage_change(0, 100))     <span class="code-comment"># should handle zero</span><br>
+            print(percentage_change(200, 100))   <span class="code-comment"># negative change</span>
+          </div>
+          <p>Run it. Verify the output makes sense. You've now done the full loop: comment → AI writes → run → ask AI to explain → improve → run again. That's the core workflow.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>The key takeaway from this exercise</strong>
+        <p>AI is most useful when you stay in control of the scope. One focused request gets you one useful function. "Write me a complete data analysis tool" gets you something overwhelming. Start small, read everything, refine with follow-up prompts, and run after each change. That rhythm — small request, read, refine, run — is the actual workflow.</p>
       </div>
     </div>
   </div>

@@ -13,25 +13,23 @@
 
 <nav class="nav">
   <a href="index.html" class="nav-logo">py<span>flow</span></a>
-  <div class="nav-links">
+    <div class="nav-links">
     <a href="index.html">Overview</a>
     <a href="tools.html">The Tools</a>
-    <a href="ides.html" class="active">IDEs</a>
-    <a href="ai-assistants.html">AI Assistants</a>
     <a href="workflow.html">How It Connects</a>
     <a href="stacks.html">Choose Your Stack</a>
     <a href="start.html">Get Started</a>
+    <a href="claude-power.html" style="color: var(--accent2);">Claude Advanced ✦</a>
   </div>
   <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
 </nav>
 <div class="mobile-nav" id="mobileNav">
   <a href="index.html">Overview</a>
   <a href="tools.html">The Tools</a>
-  <a href="ides.html">IDEs</a>
-  <a href="ai-assistants.html">AI Assistants</a>
   <a href="workflow.html">How It Connects</a>
   <a href="stacks.html">Choose Your Stack</a>
   <a href="start.html">Get Started</a>
+  <a href="claude-power.html">Claude Advanced ✦</a>
 </div>
 
 <main>
@@ -290,6 +288,80 @@
         <div class="model-by">Various · Private · Free</div>
         <p>Cursor can connect to locally-running models via Ollama. Nothing leaves your machine. Quality is lower than cloud models, but useful for privacy-sensitive code or working offline.</p>
         <div class="model-use">Best for: Code you can't send to external APIs, offline work</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Try It Out -->
+<section class="ide-section" id="try-it">
+  <div class="container">
+    <h2>Try it out — a 10-minute exercise</h2>
+    <p class="section-intro-sm">Cursor's power is in its four interaction modes. This exercise walks you through all four — so you understand what each one is for and when to switch between them.</p>
+
+    <div class="tryit-steps">
+
+      <div class="tryit-step">
+        <div class="ts-badge">Before you start</div>
+        <div class="ts-body">
+          <p>Open Cursor with any project folder (or create a new empty folder). Create a file called <code>practice.py</code>. In Cursor's settings, choose your model — Claude Sonnet is a good default. Make sure you're on the free trial or have a subscription active.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 1 — Tab completion (write a comment, accept the function)</div>
+        <div class="ts-body">
+          <p>Type this comment and press Enter:</p>
+          <div class="code-block small">
+            <div class="code-comment"># Return the N most common words in a string</div>
+          </div>
+          <p>Start typing <code>def</code>. Cursor suggests the entire function. Read what it suggests before pressing Tab. Ask yourself: does this look right? If it's too complex, just keep typing your own simpler version — the suggestion disappears.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 2 — ⌘K inline edit (select → describe the change)</div>
+        <div class="ts-body">
+          <p>Select your entire function. Press <kbd>Cmd+K</kbd> (Mac) or <kbd>Ctrl+K</kbd> (Windows). A small input appears. Type:</p>
+          <div class="code-block small">make this case-insensitive and strip punctuation before counting</div>
+          <p>A diff appears — the original in red, the new version in green. Read every line. Press <kbd>Cmd+Y</kbd> to accept or <kbd>Cmd+N</kbd> to reject. This is the fastest way to make targeted changes to code you already have.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 3 — ⌘L chat (ask a question about your code)</div>
+        <div class="ts-body">
+          <p>Press <kbd>Cmd+L</kbd> to open the chat panel. Type:</p>
+          <div class="code-block small">Explain what collections.Counter does in this function and why it's the right choice here</div>
+          <p>The AI explains it in context — it can see your file. Ask follow-up questions as naturally as you would in conversation. This is not Google — you can say "I still don't get the second part" and it will rephrase.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 4 — Reference your codebase</div>
+        <div class="ts-body">
+          <p>In the chat panel, try using the <code>@</code> reference syntax:</p>
+          <div class="code-block small">@practice.py Can you add a simple test at the bottom of this file that verifies the function works with a sample sentence?</div>
+          <p>The AI reads the file you referenced and adds a test that matches your actual function signature. Review it — run it with <kbd>F5</kbd> to confirm it passes.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 5 — Control scope deliberately</div>
+        <div class="ts-body">
+          <p>If Cursor generated more than you wanted — a complex test suite when you wanted one simple test — don't accept it. Press <kbd>Cmd+N</kbd> to reject, then re-prompt more specifically:</p>
+          <div class="code-block small">Just one assert statement, nothing else. Test that "Hello world hello" returns {'hello': 2, 'world': 1}</div>
+          <p>Specific constraints produce specific outputs. This is a skill — the more precisely you describe what you want, the less you have to trim.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>The key habit to build in Cursor</strong>
+        <p>Always read the diff before accepting. Cursor is fast and often right, but "often" is not "always." A 10-second read of the diff catches the mistakes that would cost you 20 minutes to debug later. The goal is speed <em>and</em> quality — you get both by reading, not by accepting everything.</p>
       </div>
     </div>
   </div>
