@@ -56,3 +56,29 @@ if ('IntersectionObserver' in window) {
     observer.observe(el);
   });
 }
+
+// Theme toggle
+const toggleBtn = document.getElementById('themeToggle');
+const root = document.documentElement;
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  root.setAttribute('data-theme', savedTheme);
+  toggleBtn.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+}
+
+// Toggle theme
+toggleBtn.addEventListener('click', () => {
+  const current = root.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+
+  if (next === 'dark') {
+    root.removeAttribute('data-theme');
+  } else {
+    root.setAttribute('data-theme', 'light');
+  }
+
+  toggleBtn.textContent = next === 'light' ? '🌙' : '☀️';
+  localStorage.setItem('theme', next);
+});

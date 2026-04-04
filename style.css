@@ -1386,3 +1386,133 @@ td.bad { color: var(--bad); background: var(--bad-bg); }
 @media (max-width: 600px) {
   .tryit-step { flex-direction: column; gap: 0.75rem; }
 }
+
+/* ===========================
+   LIGHT THEME
+   =========================== */
+
+:root[data-theme="light"] {
+  --bg: #fafafa;
+  --bg2: #ffffff;
+  --bg3: #f0f0f5;
+
+  --surface: #ffffff;
+  --surface2: #f3f3f8;
+
+  --text: #1a1a1f;
+  --text2: #44445a;
+  --text3: #77778a;
+
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.15);
+
+  --accent: #5b4bff;
+  --accent2: #7a6fff;
+  --accent-glow: rgba(91,75,255,0.12);
+
+  --good: #059669;
+  --good-bg: rgba(5,150,105,0.08);
+
+  --neutral: #d97706;
+  --neutral-bg: rgba(217,119,6,0.08);
+
+  --bad: #dc2626;
+  --bad-bg: rgba(220,38,38,0.08);
+
+  --ide-color: #5b4bff;
+  --ai-color: #0891b2;
+  --env-color: #059669;
+  --git-color: #ea580c;
+  --pkg-color: #7c3aed;
+}
+
+/* ===========================
+   LIGHT THEME — NAV + MENU FIXES
+   =========================== */
+
+/* Light nav background */
+:root[data-theme="light"] .nav {
+  background: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  backdrop-filter: blur(16px);
+}
+
+/* Light mode nav links */
+:root[data-theme="light"] .nav-links a {
+  color: var(--text2);
+}
+
+:root[data-theme="light"] .nav-links a:hover {
+  color: var(--text);
+  background: var(--surface2);
+}
+
+:root[data-theme="light"] .nav-links a.active {
+  background: var(--surface2);
+  color: var(--text);
+}
+
+/* Light mode mobile nav */
+:root[data-theme="light"] .mobile-nav {
+  background: var(--bg2);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+:root[data-theme="light"] .mobile-nav a {
+  color: var(--text2);
+}
+
+:root[data-theme="light"] .mobile-nav a:hover {
+  background: var(--surface2);
+  color: var(--text);
+}
+
+/* ===========================
+   THEME TOGGLE BUTTON FIX
+   =========================== */
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text2);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 0.5rem;
+  transition: color 0.15s;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+}
+
+/* ===========================
+   ALIGNMENT FIX
+   =========================== */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.nav-mobile-toggle {
+  margin-left: 0.5rem;
+}
+
+/* Keep menu items aligned left within the right side of the nav */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Make sure nav-links never center themselves */
+.nav-links {
+  margin-left: auto;
+}
