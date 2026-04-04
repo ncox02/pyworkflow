@@ -1516,3 +1516,10 @@ td.bad { color: var(--bad); background: var(--bad-bg); }
 .nav-links {
   margin-left: auto;
 }
+
+.footer-nav .theme-toggle {
+  font-size: 1rem;          /* match your link size */
+  line-height: 1;           /* prevents emoji sag */
+  vertical-align: middle;   /* aligns with text baseline */
+  padding: 0;               /* optional: keeps height tight */
+}
