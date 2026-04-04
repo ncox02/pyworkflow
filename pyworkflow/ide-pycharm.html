@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PyCharm — IDE Deep Dive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="ide-styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">py<span>flow</span></a>
+    <div class="nav-links">
+    <a href="index.html">Overview</a>
+    <a href="tools.html">The Tools</a>
+    <a href="workflow.html">How It Connects</a>
+    <a href="stacks.html">Choose Your Stack</a>
+    <a href="start.html">Get Started</a>
+    <a href="claude-power.html" style="color: var(--accent2);">Claude Advanced ✦</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Overview</a>
+  <a href="tools.html">The Tools</a>
+  <a href="workflow.html">How It Connects</a>
+  <a href="stacks.html">Choose Your Stack</a>
+  <a href="start.html">Get Started</a>
+  <a href="claude-power.html">Claude Advanced ✦</a>
+</div>
+
+<main>
+
+<div class="ide-hero pycharm-hero">
+  <div class="container">
+    <div class="ide-breadcrumb"><a href="ides.html">← IDEs</a></div>
+    <div class="ide-hero-inner">
+      <div class="ide-logo-lg pycharm-lg">🐍</div>
+      <div>
+        <div class="ide-tag">JetBrains · Free (Community) · Paid (Pro) · All platforms</div>
+        <h1 class="ide-title">PyCharm</h1>
+        <p class="ide-subtitle">The only IDE built exclusively for Python. No configuration required — it understands Python deeply from the moment you open a project. The professional choice for serious Python development.</p>
+      </div>
+    </div>
+    <div class="ide-toc">
+      <a href="#what-it-is">What it is</a>
+      <a href="#python-depth">Python depth</a>
+      <a href="#ai-capabilities">AI capabilities</a>
+      <a href="#session-walkthrough">A real session</a>
+      <a href="#community-vs-pro">Community vs Pro</a>
+      <a href="#pros-cons">Pros & cons</a>
+    </div>
+  </div>
+</div>
+
+<!-- What it is -->
+<section class="ide-section" id="what-it-is">
+  <div class="container">
+    <h2>What PyCharm actually is</h2>
+    <p>PyCharm is a <strong>full IDE</strong> (Integrated Development Environment) built by JetBrains, a company whose entire business is making IDEs — they also make IntelliJ (Java), WebStorm (JavaScript), and others. The key difference from VS Code: PyCharm ships with deep Python understanding built in, not bolted on via extensions.</p>
+    <p>When you open a Python project in PyCharm, it immediately indexes your entire codebase, understands your imports, knows what version of every library you're using, and can reason about your code at a level that takes VS Code + multiple extensions to approximate. This is not a small difference in practice — it's why many working Python developers prefer PyCharm despite its higher cost and heavier footprint.</p>
+
+    <div class="ide-explainer-grid">
+      <div class="ide-explainer-card">
+        <div class="iec-label">Built-in Python intelligence</div>
+        <p>Type checking, import resolution, code navigation, refactoring, and documentation lookup all work immediately — no extensions to install, no configuration. PyCharm knows Python the way Word knows English.</p>
+      </div>
+      <div class="ide-explainer-card">
+        <div class="iec-label">Integrated environment management</div>
+        <p>PyCharm manages virtual environments through a graphical interface. You can create, activate, and install packages into environments without touching the terminal. It detects existing environments automatically.</p>
+      </div>
+      <div class="ide-explainer-card">
+        <div class="iec-label">Professional debugging</div>
+        <p>PyCharm's debugger is widely considered the best Python debugger available. Set breakpoints, step through code line by line, inspect every variable, and evaluate expressions — all in a visual interface.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Python depth section -->
+<section class="ide-section alt-bg" id="python-depth">
+  <div class="container">
+    <h2>What "Python-first" actually means</h2>
+    <p class="section-intro-sm">PyCharm's Python intelligence is qualitatively different from VS Code with extensions. Here's what that means in practice — features you get that you'd have to work to replicate elsewhere.</p>
+
+    <div class="depth-items">
+
+      <div class="depth-item">
+        <h3>Jump to definition — anywhere</h3>
+        <p>Hold Cmd/Ctrl and click any function name, class, or variable — even ones from installed libraries like pandas or requests. PyCharm opens the actual source code. In VS Code this sometimes works, but PyCharm is consistently reliable, even into compiled extensions and stub files.</p>
+      </div>
+
+      <div class="depth-item">
+        <h3>Find usages</h3>
+        <p>Right-click any function or variable → "Find Usages." PyCharm shows every place in your entire project where that name is used. Invaluable when refactoring — you know exactly what will break before you change anything.</p>
+      </div>
+
+      <div class="depth-item">
+        <h3>Safe rename</h3>
+        <p>Right-click any variable, function, or class → "Refactor → Rename." PyCharm renames it everywhere — not just in the current file, but across the entire project, including string references and comments where appropriate. No search-and-replace, no missed instances.</p>
+      </div>
+
+      <div class="depth-item">
+        <h3>Inline error detection</h3>
+        <p>PyCharm underlines errors as you type — not just syntax errors, but logical ones: using a variable before it's assigned, calling a method that doesn't exist, returning the wrong type, unused imports. These are shown before you ever run the code.</p>
+      </div>
+
+      <div class="depth-item">
+        <h3>Structural search and replace</h3>
+        <p>A Pro feature: search for code patterns (not text, but actual code structure) and replace them across your entire project. For example: find all functions that return None but have no explicit return statement, and add one. VS Code has no equivalent.</p>
+      </div>
+
+      <div class="depth-item">
+        <h3>Database tool (Pro)</h3>
+        <p>PyCharm Pro includes a full database client — you can connect to PostgreSQL, SQLite, MySQL, and others, browse tables, run queries, and view results, all without leaving the IDE. For data-adjacent Python work this is extremely useful.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI Capabilities in PyCharm -->
+<section class="ide-section" id="ai-capabilities">
+  <div class="container">
+    <h2>AI in PyCharm</h2>
+    <p class="section-intro-sm">PyCharm's AI story is different from VS Code's. Rather than a marketplace of competing AI extensions, PyCharm has its own AI (JetBrains AI) that integrates deeply with the IDE — and also supports third-party AI tools.</p>
+
+    <div class="ai-comparison-block">
+      <div class="acb-option">
+        <div class="acb-label">JetBrains AI Assistant (Pro only)</div>
+        <div class="acb-tag">Native · Deeply integrated</div>
+        <p>JetBrains AI is baked into PyCharm Pro. It has access to things no external AI tool can see: your run configurations, your test results, your recent error logs, your project structure. When you ask it "why is this test failing?" it doesn't just see the code — it sees the actual test output.</p>
+        <ul class="acb-features">
+          <li>Inline suggestions that understand your full project context</li>
+          <li>Chat panel with access to your files, errors, and run history</li>
+          <li>AI-powered commit message generation</li>
+          <li>Code review suggestions integrated into the diff view</li>
+          <li>Rename suggestions with project-aware reasoning</li>
+          <li>Context-aware documentation generation</li>
+        </ul>
+      </div>
+      <div class="acb-option">
+        <div class="acb-label">GitHub Copilot (Community + Pro)</div>
+        <div class="acb-tag">Plugin · Well integrated</div>
+        <p>JetBrains has a first-class GitHub Copilot plugin, available for both Community and Pro editions. Install via Settings → Plugins → Marketplace. Provides inline suggestions and a chat panel, similar to the VS Code experience. A strong choice if you already have a Copilot subscription.</p>
+        <ul class="acb-features">
+          <li>Inline code completion as you type</li>
+          <li>Chat panel for questions and explanations</li>
+          <li>Slightly less project-aware than JetBrains AI</li>
+          <li>Available on Community (free) edition</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="capability-list" style="margin-top: 2rem;">
+
+      <div class="capability-item">
+        <div class="cap-num">1</div>
+        <div class="cap-content">
+          <h3>AI-powered code completion <span class="cap-tool">JetBrains AI · Copilot</span></h3>
+          <p>Suggestions appear inline as you type, grayed out. Accept with Tab. PyCharm's own completion was already excellent before AI — it understood your types and suggested correct methods. AI completion layers on top of this, predicting entire logical blocks based on context.</p>
+          <div class="cap-when"><strong>Advantage over VS Code:</strong> PyCharm's type inference means the AI suggestions are more often type-correct — it knows what methods are actually available on your object, not just what's statistically common in training data.</div>
+        </div>
+      </div>
+
+      <div class="capability-item">
+        <div class="cap-num">2</div>
+        <div class="cap-content">
+          <h3>Context-aware chat <span class="cap-tool">JetBrains AI · Copilot Chat</span></h3>
+          <p>Open the AI chat panel (right sidebar). Unlike browser-based AI, the chat here knows your project structure. You can reference files, ask about errors that just appeared in your run window, or ask questions about code you're currently looking at without pasting anything.</p>
+          <div class="cap-example">
+            <div class="cap-example-label">What you can reference directly</div>
+            <ul class="cap-list">
+              <li>"Explain this function" (with cursor in the function)</li>
+              <li>"Why did my last test run fail?" (it reads the test output)</li>
+              <li>"What's the best way to structure this class?" (it sees the class)</li>
+              <li>"Generate a docstring for this method"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="capability-item">
+        <div class="cap-num">3</div>
+        <div class="cap-content">
+          <h3>AI-powered refactoring <span class="cap-tool">JetBrains AI</span></h3>
+          <p>Select a block of code → right-click → "AI Actions" → choose from: Refactor this code, Find potential bugs, Add error handling, Simplify, or Make more Pythonic. The AI rewrites the selection in a preview panel; you accept or reject. Combined with PyCharm's safe rename and find usages, this is genuinely powerful refactoring.</p>
+        </div>
+      </div>
+
+      <div class="capability-item">
+        <div class="cap-num">4</div>
+        <div class="cap-content">
+          <h3>AI test generation <span class="cap-tool">JetBrains AI</span></h3>
+          <p>Right-click a function → "Generate → Tests with AI." PyCharm creates a test file (or adds to an existing one), generates test cases including edge cases, and automatically runs them. Because it understands your test framework (pytest, unittest) and your project structure, the generated tests are more likely to be correct out of the box.</p>
+        </div>
+      </div>
+
+      <div class="capability-item">
+        <div class="cap-num">5</div>
+        <div class="cap-content">
+          <h3>Debugger + AI explanation <span class="cap-tool">JetBrains AI</span></h3>
+          <p>PyCharm's debugger is best in class on its own. With JetBrains AI, when your code hits an exception during debugging, you can ask the AI to explain the current program state — the values of all visible variables, the call stack, and why the error likely occurred. This combination is exceptionally fast for finding complex bugs.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Real session -->
+<section class="ide-section alt-bg" id="session-walkthrough">
+  <div class="container">
+    <h2>A real session in PyCharm</h2>
+
+    <div class="session-flow">
+
+      <div class="session-moment">
+        <div class="sm-time">Opening</div>
+        <div class="sm-content">
+          <h4>Open project → everything is ready</h4>
+          <p>PyCharm detects your <code>.venv</code>, activates it, and begins indexing your project. The indexing (a few seconds) builds a complete map of your codebase — every function, class, import, and variable. After this, everything is instantly navigable.</p>
+        </div>
+      </div>
+
+      <div class="session-moment">
+        <div class="sm-time">Writing</div>
+        <div class="sm-content">
+          <h4>Type a function → AI completes it, IDE validates it</h4>
+          <p>You start typing a function. As you write, PyCharm shows type-aware autocomplete (what methods are actually available on this object). JetBrains AI or Copilot overlays longer suggestions. If you misuse an API — call a method with the wrong argument type — PyCharm underlines it before you run anything.</p>
+        </div>
+      </div>
+
+      <div class="session-moment">
+        <div class="sm-time">Debugging</div>
+        <div class="sm-content">
+          <h4>Something doesn't work → set a breakpoint → step through</h4>
+          <p>Click the gutter next to a line number — a red dot appears (a breakpoint). Run in Debug mode (Shift+F9). Execution pauses at the breakpoint. You can now inspect every variable in scope, step one line at a time, or ask JetBrains AI "why is <code>price</code> None here?" — it reads the current program state and explains.</p>
+        </div>
+      </div>
+
+      <div class="session-moment">
+        <div class="sm-time">Refactoring</div>
+        <div class="sm-content">
+          <h4>Rename a function → it updates everywhere</h4>
+          <p>You realize <code>calc()</code> should be called <code>calculate_return()</code>. Right-click → Refactor → Rename. PyCharm shows you every place this function is called across all your files. Rename it once; all calls update. The AI can also suggest a better name if you ask.</p>
+        </div>
+      </div>
+
+      <div class="session-moment">
+        <div class="sm-time">Testing</div>
+        <div class="sm-content">
+          <h4>Right-click → Generate Tests with AI → run them</h4>
+          <p>Select a function you just wrote → right-click → "Generate → Tests." PyCharm creates a test file. You run all tests with one click. Results appear in a visual panel — green for passing, red for failing, with the failure message shown inline.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Community vs Pro -->
+<section class="ide-section" id="community-vs-pro">
+  <div class="container">
+    <h2>Community vs Professional</h2>
+    <p class="section-intro-sm">PyCharm comes in two editions. The difference matters — here's exactly what you gain and lose.</p>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Community (Free)</th>
+            <th>Professional (~$100/yr)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Python editing & navigation</td><td class="good">✓ Full</td><td class="good">✓ Full</td></tr>
+          <tr><td>Debugger</td><td class="good">✓ Full</td><td class="good">✓ Full</td></tr>
+          <tr><td>Git integration</td><td class="good">✓ Full</td><td class="good">✓ Full</td></tr>
+          <tr><td>Virtual environment management</td><td class="good">✓ Full</td><td class="good">✓ Full</td></tr>
+          <tr><td>GitHub Copilot (plugin)</td><td class="good">✓ Available</td><td class="good">✓ Available</td></tr>
+          <tr><td>JetBrains AI Assistant</td><td class="bad">✗ Not available</td><td class="good">✓ Included</td></tr>
+          <tr><td>Jupyter notebook support</td><td class="bad">✗ Not available</td><td class="good">✓ Built-in</td></tr>
+          <tr><td>Database tools</td><td class="bad">✗ Not available</td><td class="good">✓ Full database client</td></tr>
+          <tr><td>Web framework support (Django, Flask)</td><td class="bad">✗ Not available</td><td class="good">✓ Full support</td></tr>
+          <tr><td>Remote development</td><td class="bad">✗ Not available</td><td class="good">✓ SSH, Docker, WSL</td></tr>
+          <tr><td>Student pricing</td><td>N/A (free)</td><td class="good">Free with .edu email</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>Students get Professional for free</strong>
+        <p>JetBrains has a student/educator program — apply at jetbrains.com/student with a .edu email. You get a full license to PyCharm Professional (and all other JetBrains IDEs) at no cost for as long as you're a student. This includes JetBrains AI. There is almost no reason for a student not to take advantage of this.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Try It Out -->
+<section class="ide-section" id="try-it">
+  <div class="container">
+    <h2>Try it out — a 10-minute exercise</h2>
+    <p class="section-intro-sm">PyCharm's AI integration is more visual than VS Code — menus, right-click options, and visual diff views. This exercise walks you through using JetBrains AI (or Copilot if you're on Community edition) for a simple task, taking advantage of PyCharm's unique Python depth along the way.</p>
+
+    <div class="tryit-steps">
+
+      <div class="tryit-step">
+        <div class="ts-badge">Before you start</div>
+        <div class="ts-body">
+          <p>Open PyCharm with any Python project (or create a new one: File → New Project). Make sure your interpreter is set (bottom-right status bar shows a Python version). Create a file called <code>practice.py</code>. If you have Pro, JetBrains AI is available in the right sidebar. Community users: install GitHub Copilot from Settings → Plugins → Marketplace.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 1 — Write a function with AI completion</div>
+        <div class="ts-body">
+          <p>Type this comment and press Enter:</p>
+          <div class="code-block small">
+            <div class="code-comment"># Function to calculate compound interest</div>
+          </div>
+          <p>Start typing <code>def</code> — PyCharm's AI suggests the function. Accept with Tab. Notice PyCharm's type checking already active: hover over any parameter to see what type it expects. This is PyCharm's native Python understanding, before any AI is involved.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 2 — Jump to definition</div>
+        <div class="ts-body">
+          <p>If the AI used any standard library function (like <code>round()</code> or <code>math.pow()</code>), hold Cmd/Ctrl and click it. PyCharm jumps to the source definition. This works on your own code too — click any function name anywhere in your project and you'll land at where it was defined. Try it with a library function you don't recognize.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 3 — Use AI Actions to improve the code</div>
+        <div class="ts-body">
+          <p>Select the entire function. Right-click → <strong>AI Actions</strong> → <strong>Suggest Refactoring</strong>. PyCharm shows AI suggestions in a panel on the right. Read them — do they make sense? You can also try: <strong>AI Actions → Add Error Handling</strong> to see what it adds.</p>
+          <p>Every suggestion shows a diff (before/after). Accept what you want, reject the rest.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 4 — Run with the debugger</div>
+        <div class="ts-body">
+          <p>Add a call to your function at the bottom of the file:</p>
+          <div class="code-block small">result = compound_interest(1000, 0.05, 10)<br>print(result)</div>
+          <p>Click in the grey gutter next to the <code>print</code> line — a red dot appears (breakpoint). Press <kbd>Shift+F9</kbd> to run in debug mode. Execution pauses at the breakpoint. In the bottom panel, you can see <code>result</code>'s actual value. This is the debugger — click the variable name to inspect it.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 5 — Ask AI in the chat panel</div>
+        <div class="ts-body">
+          <p>Open the AI chat panel (right sidebar, or View → Tool Windows → AI Assistant). Ask:</p>
+          <div class="code-block small">What's the difference between compound_interest and simple_interest? Can you add a simple interest function below this one for comparison?</div>
+          <p>The AI can see your open file. It generates the new function. Review it, then click <strong>Insert at Caret</strong> to add it to your file.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 6 — Generate a docstring</div>
+        <div class="ts-body">
+          <p>Place your cursor inside one of the functions. Right-click → <strong>AI Actions → Generate Docstring</strong>. PyCharm writes a complete docstring — parameter descriptions, return value, type hints. Read it. Edit anything that isn't quite right. This is the whole point: AI gets you 80% of the way there, you refine the rest.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>What makes PyCharm's approach different</strong>
+        <p>Every AI action in PyCharm is accessible via right-click on selected code. You don't need to type prompts from scratch — the menu shows you what's possible. This is intentional: PyCharm is opinionated about workflow. If you find yourself not knowing what to ask AI, right-click your code and see what PyCharm suggests. Often the right action is already listed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pros and Cons -->
+<section class="ide-section alt-bg" id="pros-cons">
+  <div class="container">
+    <h2>Honest pros & cons</h2>
+
+    <div class="pros-cons-grid">
+      <div class="pros-col">
+        <div class="pc-header good-header">Strengths</div>
+        <div class="pc-item">
+          <div class="pc-icon good-icon">✓</div>
+          <div>
+            <strong>Zero configuration for Python</strong>
+            <p>Open a project, pick an interpreter — everything works. No extension hunting, no configuration files, no searching for why autocomplete isn't working. For a Python developer, this is a significant quality-of-life advantage.</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon good-icon">✓</div>
+          <div>
+            <strong>Best Python debugger available</strong>
+            <p>Breakpoints, watch expressions, step-into, step-over, variable inspection, call stack navigation — all in a polished visual interface. This alone can be worth the cost.</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon good-icon">✓</div>
+          <div>
+            <strong>JetBrains AI has unique context access</strong>
+            <p>No browser-based AI tool has access to your run logs, test results, and project-wide type information simultaneously. JetBrains AI does, which makes its answers noticeably more accurate for project-specific questions.</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon good-icon">✓</div>
+          <div>
+            <strong>Refactoring is genuinely safe</strong>
+            <p>Rename, extract method, inline variable, move class — these operations are Python-aware and project-wide. In other tools, "rename" is often just search-and-replace. In PyCharm, it actually understands scope.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cons-col">
+        <div class="pc-header bad-header">Limitations</div>
+        <div class="pc-item">
+          <div class="pc-icon bad-icon">✗</div>
+          <div>
+            <strong>Heavy and slow to start</strong>
+            <p>PyCharm is a JVM application — it takes noticeably longer to launch than VS Code, uses more RAM, and can feel sluggish on older machines. For a quick edit, this is annoying.</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon bad-icon">✗</div>
+          <div>
+            <strong>AI features locked behind Professional</strong>
+            <p>JetBrains AI (the native, deeply integrated option) requires the paid edition. Community users can install Copilot, but they miss the deepest integrations.</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon bad-icon">✗</div>
+          <div>
+            <strong>Smaller AI extension ecosystem</strong>
+            <p>Not every AI tool releases a JetBrains plugin. The ecosystem is smaller than VS Code's, and some newer AI tools arrive on VS Code first (or only).</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon bad-icon">✗</div>
+          <div>
+            <strong>Python-only (mostly)</strong>
+            <p>If you need to work in JavaScript, Rust, or another language, you need a different JetBrains IDE or switch to VS Code. PyCharm is Python-first by design — which is its strength and limitation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ide-nav-footer">
+      <a href="ide-vscode.html" class="btn-ghost">← VS Code</a>
+      <a href="ide-cursor.html" class="btn-primary">Next: Cursor →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-nav">
+      <a href="index.html">Overview</a>
+      <a href="tools.html">The Tools</a>
+      <a href="ides.html">IDEs</a>
+      <a href="ai-assistants.html">AI Assistants</a>
+      <a href="workflow.html">How It Connects</a>
+      <a href="stacks.html">Choose Your Stack</a>
+      <a href="start.html">Get Started</a>
+    </div>
+    <p class="footer-note">A clear guide to modern Python development — tools, workflow, and AI.</p>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

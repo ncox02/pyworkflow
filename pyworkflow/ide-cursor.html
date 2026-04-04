@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cursor — IDE Deep Dive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="ide-styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">py<span>flow</span></a>
+    <div class="nav-links">
+    <a href="index.html">Overview</a>
+    <a href="tools.html">The Tools</a>
+    <a href="workflow.html">How It Connects</a>
+    <a href="stacks.html">Choose Your Stack</a>
+    <a href="start.html">Get Started</a>
+    <a href="claude-power.html" style="color: var(--accent2);">Claude Advanced ✦</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Overview</a>
+  <a href="tools.html">The Tools</a>
+  <a href="workflow.html">How It Connects</a>
+  <a href="stacks.html">Choose Your Stack</a>
+  <a href="start.html">Get Started</a>
+  <a href="claude-power.html">Claude Advanced ✦</a>
+</div>
+
+<main>
+
+<div class="ide-hero cursor-hero">
+  <div class="container">
+    <div class="ide-breadcrumb"><a href="ides.html">← IDEs</a></div>
+    <div class="ide-hero-inner">
+      <div class="ide-logo-lg cursor-lg">⌛</div>
+      <div>
+        <div class="ide-tag">Anysphere · Free tier + ~$20/mo Pro · All platforms</div>
+        <h1 class="ide-title">Cursor</h1>
+        <p class="ide-subtitle">A fork of VS Code rebuilt from the ground up around AI. Every design decision prioritizes AI collaboration — not as a feature you bolt on, but as the core of how the editor works.</p>
+      </div>
+    </div>
+    <div class="ide-toc">
+      <a href="#what-it-is">What it is</a>
+      <a href="#how-different">How it's different</a>
+      <a href="#ai-modes">AI modes in depth</a>
+      <a href="#session-walkthrough">A real session</a>
+      <a href="#models">Choosing your model</a>
+      <a href="#pros-cons">Pros & cons</a>
+    </div>
+  </div>
+</div>
+
+<!-- What it is -->
+<section class="ide-section" id="what-it-is">
+  <div class="container">
+    <h2>What Cursor actually is</h2>
+    <p>Cursor is a code editor built by Anysphere and launched in 2023. It started as a fork of VS Code — meaning it took VS Code's source code and rebuilt on top of it. This means everything you know from VS Code works: your extensions, your keyboard shortcuts, your themes, your settings. You can import your entire VS Code configuration in one click.</p>
+    <p>But Cursor made a fundamentally different architectural choice: <strong>AI is not a plugin — it is the editor</strong>. Where VS Code adds AI via extensions that run alongside the editor, Cursor built AI into the core editing experience. The result is AI that can read your entire codebase simultaneously, understand context across multiple files, and take actions across your project — not just the file you have open.</p>
+
+    <div class="callout" style="margin-top: 1.5rem;">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>If you already use VS Code, switching to Cursor costs you nothing</strong>
+        <p>On first launch, Cursor asks to import your VS Code settings, extensions, and keybindings. The result is an editor that feels completely familiar — but with a more powerful AI layer underneath. You can evaluate Cursor without abandoning anything.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it's different -->
+<section class="ide-section alt-bg" id="how-different">
+  <div class="container">
+    <h2>How Cursor is fundamentally different</h2>
+    <p class="section-intro-sm">The gap between Cursor and VS Code with Copilot isn't just about features. It's about what the AI can actually <em>see</em>.</p>
+
+    <div class="diff-comparison">
+      <div class="diff-col">
+        <div class="diff-header">VS Code + Copilot</div>
+        <div class="diff-item">
+          <div class="diff-icon neutral-icon">→</div>
+          <p>AI sees the file you have open, plus some context from recently viewed files</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon neutral-icon">→</div>
+          <p>Chat panel can reference specific files with <code>@filename</code> syntax if you add them</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon neutral-icon">→</div>
+          <p>Agent mode can edit multiple files but with limited cross-file understanding</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon neutral-icon">→</div>
+          <p>Model: GPT-4o (Copilot's default)</p>
+        </div>
+      </div>
+      <div class="diff-col diff-col-cursor">
+        <div class="diff-header cursor-header">Cursor</div>
+        <div class="diff-item">
+          <div class="diff-icon good-icon">✓</div>
+          <p>AI can be given your <em>entire codebase</em> as context — every file, every function</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon good-icon">✓</div>
+          <p>Semantic codebase search — AI finds relevant code by meaning, not just filename</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon good-icon">✓</div>
+          <p>Agent mode designed for multi-file tasks: reads, writes, and runs commands autonomously</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon good-icon">✓</div>
+          <p>Choose your model: Claude, GPT-4o, Gemini, or others — swappable per task</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI Modes -->
+<section class="ide-section" id="ai-modes">
+  <div class="container">
+    <h2>Cursor's AI modes — what each one does</h2>
+    <p class="section-intro-sm">Cursor has four distinct ways to interact with AI. Understanding which to use when is the key to using Cursor well.</p>
+
+    <div class="modes-list">
+
+      <div class="mode-card mode-tab">
+        <div class="mode-shortcut">Tab</div>
+        <div class="mode-content">
+          <h3>Inline autocomplete</h3>
+          <p>The most passive mode. As you type, Cursor suggests what comes next in gray text. Press Tab to accept. Unlike Copilot, Cursor's completions are informed by your entire codebase — so they're more likely to match your patterns, your variable names, and your architecture.</p>
+          <div class="mode-example">
+            <strong>Best for:</strong> Day-to-day typing. Writing functions that fit your existing code style. Repetitive patterns.
+          </div>
+        </div>
+      </div>
+
+      <div class="mode-card mode-k">
+        <div class="mode-shortcut">⌘K</div>
+        <div class="mode-content">
+          <h3>Inline edit</h3>
+          <p>Select code → press Cmd+K → describe what you want changed. The AI rewrites the selection in place and shows you a diff (before/after). You accept (Cmd+Y) or reject (Cmd+N). This is the fastest way to make targeted changes: "Add type hints," "Handle the null case," "Rewrite this as a list comprehension."</p>
+          <div class="code-block small">
+            <div class="code-comment">Select a function → ⌘K → type:</div>
+            "add try/except to handle network errors, log them, and return None on failure"
+          </div>
+          <div class="mode-example">
+            <strong>Best for:</strong> Targeted rewrites, adding error handling, type hints, refactoring a specific block, improving clarity.
+          </div>
+        </div>
+      </div>
+
+      <div class="mode-card mode-l">
+        <div class="mode-shortcut">⌘L</div>
+        <div class="mode-content">
+          <h3>Chat</h3>
+          <p>A conversation panel where you can ask questions, get explanations, and discuss your code. The key feature: you can reference your codebase with <code>@</code> symbols. <code>@filename.py</code> attaches that file's contents. <code>@codebase</code> lets the AI search your entire project semantically. <code>@web</code> lets it search the internet.</p>
+          <div class="mode-example">
+            <div class="cap-example-label">Reference syntax</div>
+            <ul class="cap-list">
+              <li><code>@filename.py</code> — attach a specific file</li>
+              <li><code>@codebase</code> — AI searches your entire project</li>
+              <li><code>@web</code> — AI searches the internet</li>
+              <li><code>@docs</code> — AI searches indexed documentation</li>
+            </ul>
+          </div>
+          <div class="mode-example">
+            <strong>Best for:</strong> Understanding code, design questions, "how do I..." questions, getting explanations.
+          </div>
+        </div>
+      </div>
+
+      <div class="mode-card mode-agent">
+        <div class="mode-shortcut">Agent</div>
+        <div class="mode-content">
+          <h3>Agentic mode</h3>
+          <p>The most powerful mode. Give the AI a goal — not a specific code change, but an outcome — and it figures out what to do. It reads files, writes code, creates files, runs terminal commands, reads the output, fixes errors, and iterates until the task is done. You watch and review each step.</p>
+          <div class="mode-example">
+            <div class="cap-example-label">What you can say</div>
+            <ul class="cap-list">
+              <li>"Set up a Flask API with three endpoints: GET /data, POST /upload, DELETE /remove"</li>
+              <li>"Write tests for everything in utils.py and make sure they all pass"</li>
+              <li>"Find all functions with no type hints and add them"</li>
+              <li>"Refactor the database module to use SQLAlchemy instead of raw SQL"</li>
+            </ul>
+          </div>
+          <div class="callout" style="margin-top: 1rem; margin-bottom: 0;">
+            <div class="callout-icon">⚠</div>
+            <div>
+              <strong>Always review agent output</strong>
+              <p>Agent mode can make changes across many files. Always read what it produced before accepting. It gets tasks right most of the time, but it can also confidently write plausible-looking code that has subtle bugs. Your judgment is still the last line of review.</p>
+            </div>
+          </div>
+          <div class="mode-example" style="margin-top: 1rem;">
+            <strong>Best for:</strong> Large features, multi-file refactors, repetitive changes across a codebase, generating scaffolding.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Real session -->
+<section class="ide-section alt-bg" id="session-walkthrough">
+  <div class="container">
+    <h2>A real session in Cursor</h2>
+
+    <div class="session-flow">
+
+      <div class="session-moment">
+        <div class="sm-time">Starting a new feature</div>
+        <div class="sm-content">
+          <h4>Open chat → describe what you want to build</h4>
+          <p>Press Cmd+L. Type: "I want to add a function that reads a CSV file, validates that all required columns are present, and returns a cleaned DataFrame. Use @codebase to see what column names I'm already using elsewhere." Cursor searches your project, finds the relevant patterns, and suggests an implementation consistent with your existing code.</p>
+        </div>
+      </div>
+
+      <div class="session-moment">
+        <div class="sm-time">Writing the code</div>
+        <div class="sm-content">
+          <h4>Tab completions inform your typing</h4>
+          <p>As you write, inline suggestions appear that match your existing patterns — your naming conventions, your error handling style, your import preferences. Accept what fits, type through what doesn't. The completions feel less generic than Copilot because they're based on your actual codebase.</p>
+        </div>
+      </div>
+
+      <div class="session-moment">
+        <div class="sm-time">Something isn't right</div>
+        <div class="sm-content">
+          <h4>Select the problem → ⌘K → describe the fix</h4>
+          <p>You see a function that's too long and confusing. Select it. Press Cmd+K. Type: "Split this into three smaller functions with clear names." The diff appears — the original is replaced by three focused functions. You review and accept.</p>
+        </div>
+      </div>
+
+      <div class="session-moment">
+        <div class="sm-time">Big task</div>
+        <div class="sm-content">
+          <h4>Switch to agent → give a goal</h4>
+          <p>You want tests for your entire module. Switch to Agent mode. Type: "Write comprehensive pytest tests for everything in analysis.py. Run them and fix any failures." Cursor reads the file, generates tests, runs them in the terminal, sees which ones fail, fixes them, and reports back. You review the final test file.</p>
+        </div>
+      </div>
+
+      <div class="session-moment">
+        <div class="sm-time">Reviewing changes</div>
+        <div class="sm-content">
+          <h4>Read every diff before accepting</h4>
+          <p>Cursor shows you diffs for every change it makes. Read them. This is not optional. Cursor is fast and often right, but it can also produce code that looks correct and has a subtle bug. Your review is the quality gate.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Choosing your model -->
+<section class="ide-section" id="models">
+  <div class="container">
+    <h2>Choosing your model</h2>
+    <p class="section-intro-sm">One of Cursor's most distinctive features: you choose which AI model powers it. Different models have different strengths. You can switch per task.</p>
+
+    <div class="model-grid">
+      <div class="model-card">
+        <div class="model-name">Claude Sonnet / Opus</div>
+        <div class="model-by">Anthropic</div>
+        <p>Cursor's default and most popular choice. Excellent at reasoning, following complex instructions, and understanding large codebases. Claude Sonnet balances quality and speed; Opus is slower but stronger for very complex tasks.</p>
+        <div class="model-use">Best for: Complex reasoning, architecture questions, large refactors</div>
+      </div>
+      <div class="model-card">
+        <div class="model-name">GPT-4o</div>
+        <div class="model-by">OpenAI</div>
+        <p>Fast and capable. Good general-purpose coding model. Slightly weaker than Claude at following very detailed instructions, but competitive for most tasks.</p>
+        <div class="model-use">Best for: Fast chat answers, quick completions, general coding help</div>
+      </div>
+      <div class="model-card">
+        <div class="model-name">Gemini 1.5 Pro</div>
+        <div class="model-by">Google</div>
+        <p>Extremely large context window (1M tokens) — can read more of your codebase simultaneously than any other model. Strong at tasks requiring comprehensive codebase understanding.</p>
+        <div class="model-use">Best for: Very large codebases, tasks requiring reading many files simultaneously</div>
+      </div>
+      <div class="model-card">
+        <div class="model-name">Local models (Ollama)</div>
+        <div class="model-by">Various · Private · Free</div>
+        <p>Cursor can connect to locally-running models via Ollama. Nothing leaves your machine. Quality is lower than cloud models, but useful for privacy-sensitive code or working offline.</p>
+        <div class="model-use">Best for: Code you can't send to external APIs, offline work</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Try It Out -->
+<section class="ide-section" id="try-it">
+  <div class="container">
+    <h2>Try it out — a 10-minute exercise</h2>
+    <p class="section-intro-sm">Cursor's power is in its four interaction modes. This exercise walks you through all four — so you understand what each one is for and when to switch between them.</p>
+
+    <div class="tryit-steps">
+
+      <div class="tryit-step">
+        <div class="ts-badge">Before you start</div>
+        <div class="ts-body">
+          <p>Open Cursor with any project folder (or create a new empty folder). Create a file called <code>practice.py</code>. In Cursor's settings, choose your model — Claude Sonnet is a good default. Make sure you're on the free trial or have a subscription active.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 1 — Tab completion (write a comment, accept the function)</div>
+        <div class="ts-body">
+          <p>Type this comment and press Enter:</p>
+          <div class="code-block small">
+            <div class="code-comment"># Return the N most common words in a string</div>
+          </div>
+          <p>Start typing <code>def</code>. Cursor suggests the entire function. Read what it suggests before pressing Tab. Ask yourself: does this look right? If it's too complex, just keep typing your own simpler version — the suggestion disappears.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 2 — ⌘K inline edit (select → describe the change)</div>
+        <div class="ts-body">
+          <p>Select your entire function. Press <kbd>Cmd+K</kbd> (Mac) or <kbd>Ctrl+K</kbd> (Windows). A small input appears. Type:</p>
+          <div class="code-block small">make this case-insensitive and strip punctuation before counting</div>
+          <p>A diff appears — the original in red, the new version in green. Read every line. Press <kbd>Cmd+Y</kbd> to accept or <kbd>Cmd+N</kbd> to reject. This is the fastest way to make targeted changes to code you already have.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 3 — ⌘L chat (ask a question about your code)</div>
+        <div class="ts-body">
+          <p>Press <kbd>Cmd+L</kbd> to open the chat panel. Type:</p>
+          <div class="code-block small">Explain what collections.Counter does in this function and why it's the right choice here</div>
+          <p>The AI explains it in context — it can see your file. Ask follow-up questions as naturally as you would in conversation. This is not Google — you can say "I still don't get the second part" and it will rephrase.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 4 — Reference your codebase</div>
+        <div class="ts-body">
+          <p>In the chat panel, try using the <code>@</code> reference syntax:</p>
+          <div class="code-block small">@practice.py Can you add a simple test at the bottom of this file that verifies the function works with a sample sentence?</div>
+          <p>The AI reads the file you referenced and adds a test that matches your actual function signature. Review it — run it with <kbd>F5</kbd> to confirm it passes.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <div class="ts-badge">Step 5 — Control scope deliberately</div>
+        <div class="ts-body">
+          <p>If Cursor generated more than you wanted — a complex test suite when you wanted one simple test — don't accept it. Press <kbd>Cmd+N</kbd> to reject, then re-prompt more specifically:</p>
+          <div class="code-block small">Just one assert statement, nothing else. Test that "Hello world hello" returns {'hello': 2, 'world': 1}</div>
+          <p>Specific constraints produce specific outputs. This is a skill — the more precisely you describe what you want, the less you have to trim.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <strong>The key habit to build in Cursor</strong>
+        <p>Always read the diff before accepting. Cursor is fast and often right, but "often" is not "always." A 10-second read of the diff catches the mistakes that would cost you 20 minutes to debug later. The goal is speed <em>and</em> quality — you get both by reading, not by accepting everything.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pros and Cons -->
+<section class="ide-section alt-bg" id="pros-cons">
+  <div class="container">
+    <h2>Honest pros & cons</h2>
+
+    <div class="pros-cons-grid">
+      <div class="pros-col">
+        <div class="pc-header good-header">Strengths</div>
+        <div class="pc-item">
+          <div class="pc-icon good-icon">✓</div>
+          <div>
+            <strong>Most powerful AI integration available</strong>
+            <p>No other mainstream editor gives AI the same level of codebase access. The @codebase feature and agent mode are qualitatively ahead of what VS Code extensions offer.</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon good-icon">✓</div>
+          <div>
+            <strong>Familiar if you know VS Code</strong>
+            <p>The transition cost is nearly zero. Import your settings, and it feels like home with better AI. This is a big deal — most tools require learning a new environment.</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon good-icon">✓</div>
+          <div>
+            <strong>Model flexibility</strong>
+            <p>Swap between Claude, GPT-4o, Gemini, and local models. Pick the best tool for each task rather than being locked into one vendor's model.</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon good-icon">✓</div>
+          <div>
+            <strong>Agent mode actually works</strong>
+            <p>Multi-file agentic coding in VS Code feels like an add-on. In Cursor it's a first-class workflow, and it shows — the agent mode is more reliable and more capable.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cons-col">
+        <div class="pc-header bad-header">Limitations</div>
+        <div class="pc-item">
+          <div class="pc-icon bad-icon">✗</div>
+          <div>
+            <strong>Subscription required for serious use</strong>
+            <p>The free tier gives limited AI requests. Real use requires ~$20/month. VS Code with Copilot is similar in cost, but Cursor's free tier is more restricted.</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon bad-icon">✗</div>
+          <div>
+            <strong>Newer — less battle-tested</strong>
+            <p>VS Code has been around since 2015. Cursor since 2023. There's less community knowledge, fewer tutorials, and the product still changes rapidly. Occasional rough edges.</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon bad-icon">✗</div>
+          <div>
+            <strong>Agent mode requires careful review</strong>
+            <p>The same power that makes agent mode valuable also makes it risky if you accept changes without reading them. It confidently makes mistakes. The human review step is not optional.</p>
+          </div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-icon bad-icon">✗</div>
+          <div>
+            <strong>No equivalent to PyCharm's Python depth</strong>
+            <p>Cursor inherits VS Code's Python support (via the Python extension). PyCharm's native Python intelligence — especially the debugger and refactoring tools — is still deeper.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ide-nav-footer">
+      <a href="ide-pycharm.html" class="btn-ghost">← PyCharm</a>
+      <a href="ides.html" class="btn-primary">All IDEs →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-nav">
+      <a href="index.html">Overview</a>
+      <a href="tools.html">The Tools</a>
+      <a href="ides.html">IDEs</a>
+      <a href="ai-assistants.html">AI Assistants</a>
+      <a href="workflow.html">How It Connects</a>
+      <a href="stacks.html">Choose Your Stack</a>
+      <a href="start.html">Get Started</a>
+    </div>
+    <p class="footer-note">A clear guide to modern Python development — tools, workflow, and AI.</p>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

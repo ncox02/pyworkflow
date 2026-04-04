@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Connects — Python & AI Workflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">py<span>flow</span></a>
+  <div class="nav-links">
+    <a href="index.html">Overview</a>
+    <a href="tools.html">The Tools</a>
+    <a href="workflow.html" class="active">How It Connects</a>
+    <a href="stacks.html">Choose Your Stack</a>
+    <a href="start.html">Get Started</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Overview</a>
+  <a href="tools.html">The Tools</a>
+  <a href="workflow.html">How It Connects</a>
+  <a href="stacks.html">Choose Your Stack</a>
+  <a href="start.html">Get Started</a>
+</div>
+
+<main>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-eyebrow">The big picture</div>
+    <h1 class="page-title">How It Connects</h1>
+    <p class="page-sub">Tools alone don't tell the story. Here's how a real development session flows — from first file to shared code — and where every tool fits in.</p>
+  </div>
+</div>
+
+<!-- The mental model diagram -->
+<section class="workflow-map">
+  <div class="container">
+    <h2 class="section-title">The whole system, at a glance</h2>
+    <p class="section-intro">Every tool has a home in this picture. The arrows show how things connect and where data flows.</p>
+
+    <div class="system-diagram">
+      <!-- Row: Your Machine -->
+      <div class="diagram-section">
+        <div class="diagram-section-label">Your machine</div>
+        <div class="diagram-row">
+          <div class="diagram-box box-ide">
+            <div class="db-title">IDE / Editor</div>
+            <div class="db-sub">VS Code · PyCharm · Cursor</div>
+          </div>
+          <div class="diagram-connector">↔</div>
+          <div class="diagram-box box-ai">
+            <div class="db-title">AI Assistant</div>
+            <div class="db-sub">Claude · Copilot · JetBrains AI</div>
+          </div>
+          <div class="diagram-connector">↔</div>
+          <div class="diagram-box box-env">
+            <div class="db-title">Virtual Env</div>
+            <div class="db-sub">venv · conda · uv</div>
+          </div>
+        </div>
+        <div class="diagram-down-arrow">↓ Git commit</div>
+      </div>
+
+      <!-- Row: Version Control -->
+      <div class="diagram-section">
+        <div class="diagram-section-label">Version control (local)</div>
+        <div class="diagram-row single">
+          <div class="diagram-box box-git wide">
+            <div class="db-title">Git</div>
+            <div class="db-sub">Tracks every change · Branches · History · Merges</div>
+          </div>
+        </div>
+        <div class="diagram-down-arrow">↓ git push</div>
+      </div>
+
+      <!-- Row: The Cloud -->
+      <div class="diagram-section">
+        <div class="diagram-section-label">The cloud</div>
+        <div class="diagram-row">
+          <div class="diagram-box box-github">
+            <div class="db-title">GitHub</div>
+            <div class="db-sub">Remote repo · Pull requests · Issues</div>
+          </div>
+          <div class="diagram-connector">→</div>
+          <div class="diagram-box box-ci">
+            <div class="db-title">CI/CD</div>
+            <div class="db-sub">GitHub Actions · Auto-test · Deploy</div>
+          </div>
+          <div class="diagram-connector">→</div>
+          <div class="diagram-box box-deploy">
+            <div class="db-title">Deployed app</div>
+            <div class="db-sub">Server · Cloud · Users</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Package ecosystem -->
+      <div class="diagram-aside">
+        <div class="diagram-box box-pypi aside-box">
+          <div class="db-title">PyPI</div>
+          <div class="db-sub">pip install ↑ to your virtual env</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="diagram-caption">This is the standard shape of a Python project. The tools you choose fill each box — but the boxes and the arrows between them stay the same.</p>
+  </div>
+</section>
+
+<!-- The workflow walkthrough -->
+<section class="workflow-walk alt-bg">
+  <div class="container">
+    <h2 class="section-title">A real session, step by step</h2>
+    <p class="section-intro">Here's what a typical work session looks like — start to finish. Not theory. This is literally what happens.</p>
+
+    <div class="steps-list">
+
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Open your project in the IDE</h3>
+          <p>You open a folder in VS Code or PyCharm. The IDE reads your project structure — your Python files, your configuration, your dependencies. It immediately starts providing: syntax highlighting, autocomplete, error detection.</p>
+          <div class="step-aside">The IDE knows your project structure before you've typed a single character.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Activate your virtual environment</h3>
+          <p>Before writing any code, you activate your project's virtual environment. This tells Python "use the packages installed for <em>this</em> project." Your IDE may do this automatically if it detects a <code>.venv</code> folder. If not, you run <code>source .venv/bin/activate</code> in the terminal.</p>
+          <div class="step-aside">Your IDE's Python interpreter setting determines which environment is active. Get this right and everything else follows.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Write code — with AI alongside</h3>
+          <p>You start writing. If you have Copilot, it suggests completions as you type — sometimes a line, sometimes a whole function. If you're stuck, you open Claude in a browser tab or the IDE's chat panel and ask a question. The AI can see your code if you paste it, or in some tools it can read your files directly.</p>
+          <div class="step-aside">AI is not a replacement for understanding — it's a very fast research assistant and rubber duck. The more context you give it, the more useful it becomes.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Run and test your code</h3>
+          <p>You run your file (F5 in VS Code, Shift+F10 in PyCharm, or <code>python myfile.py</code> in the terminal). If something breaks, the error appears in the terminal. You read the traceback, ask the AI what it means if needed, fix it, and run again. This loop — write, run, fix — is the core of programming.</p>
+          <div class="step-aside">The built-in terminal in your IDE and your virtual environment need to agree — make sure you activated the right environment before running.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h3>Commit your changes with Git</h3>
+          <p>When your code is working and you want to save a snapshot, you make a Git commit. You write a short message describing what changed ("Added data cleaning function" or "Fixed bug in rate calculator"). This is now permanently recorded in your project's history — you can always return to this exact state.</p>
+          <div class="code-block small">
+            git add .<br>
+            git commit -m "Add data cleaning function"
+          </div>
+          <div class="step-aside">Commit often. Small, well-labeled commits are infinitely more useful than one big commit at the end of the day.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <h3>Push to GitHub</h3>
+          <p>You push your commits to GitHub. Now your code is backed up, visible to collaborators, and the history is safely off your machine. If you're working solo, this is just good hygiene. If you're working with others, this is where collaboration begins.</p>
+          <div class="code-block small">
+            git push origin main
+          </div>
+          <div class="step-aside">GitHub also stores your project's Issues (bugs, feature requests) and Pull Requests (proposed changes to review before merging).</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">7</div>
+        <div class="step-content">
+          <h3>Collaboration via Pull Requests</h3>
+          <p>If working with others: they clone the repo, make their changes on a branch, push to GitHub, and open a Pull Request. You review their code on GitHub, leave comments, request changes, and eventually merge it. Git makes sure your changes and their changes don't overwrite each other.</p>
+          <div class="step-aside">Pull Requests are the primary way professional teams review and discuss code before it goes into the main branch. It's a quality gate, not just a formality.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Where AI fits in the workflow -->
+<section class="ai-in-workflow">
+  <div class="container">
+    <h2 class="section-title">Where AI fits in — specifically</h2>
+    <p class="section-intro">AI doesn't replace any part of this workflow. It makes every part faster. Here's exactly where it helps.</p>
+
+    <div class="ai-moments">
+
+      <div class="ai-moment">
+        <div class="aim-phase">While writing</div>
+        <div class="aim-what">Inline autocomplete (Copilot, JetBrains AI)</div>
+        <p>Suggests the next line, the next function, or generates a whole block from a comment. Works best for repetitive patterns and standard library usage.</p>
+      </div>
+
+      <div class="ai-moment">
+        <div class="aim-phase">When stuck</div>
+        <div class="aim-what">Chat-based AI (Claude, ChatGPT)</div>
+        <p>"Why is this throwing a KeyError?" or "How do I read a CSV file in pandas?" — paste your code, describe the problem, get an explanation and a fix. Far faster than searching Stack Overflow.</p>
+      </div>
+
+      <div class="ai-moment">
+        <div class="aim-phase">Before writing</div>
+        <div class="aim-what">Design and architecture (Claude, ChatGPT)</div>
+        <p>"How should I structure this project?" or "What's the best way to handle this kind of data?" AI is excellent at high-level design conversations — before any code is written.</p>
+      </div>
+
+      <div class="ai-moment">
+        <div class="aim-phase">After writing</div>
+        <div class="aim-what">Code review (Claude, Copilot chat)</div>
+        <p>"Review this function — is there a better way to write it?" or "Are there any bugs here?" AI can catch issues a human reviewer might miss and suggest cleaner approaches.</p>
+      </div>
+
+      <div class="ai-moment">
+        <div class="aim-phase">For large tasks</div>
+        <div class="aim-what">Agentic AI (Claude Code, Cursor Agent)</div>
+        <p>Give the AI a task ("write tests for all my functions" or "refactor this module to use a class"), and it reads your files, writes the code, and places it where it belongs — with you reviewing the result.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- The project structure section -->
+<section class="project-structure alt-bg">
+  <div class="container">
+    <h2 class="section-title">What a real project looks like</h2>
+    <p class="section-intro">The structure of a Python project is not random. There are conventions that every developer recognizes — which makes it easy to understand any project the moment you open it.</p>
+
+    <div class="file-tree">
+      <div class="ft-root">my-project/</div>
+      <div class="ft-item ft-dir">.venv/  <span class="ft-comment">← virtual environment (never committed to Git)</span></div>
+      <div class="ft-item ft-dir">src/</div>
+      <div class="ft-item ft-file ind-1">main.py  <span class="ft-comment">← entry point</span></div>
+      <div class="ft-item ft-file ind-1">analysis.py</div>
+      <div class="ft-item ft-file ind-1">utils.py</div>
+      <div class="ft-item ft-dir">tests/</div>
+      <div class="ft-item ft-file ind-1">test_analysis.py</div>
+      <div class="ft-item ft-file top-level">.gitignore  <span class="ft-comment">← tells Git what NOT to track</span></div>
+      <div class="ft-item ft-file top-level">requirements.txt  <span class="ft-comment">← list of packages needed</span></div>
+      <div class="ft-item ft-file top-level">README.md  <span class="ft-comment">← what this project is and how to run it</span></div>
+    </div>
+
+    <div class="structure-notes">
+      <div class="sn-item">
+        <strong>.gitignore</strong> — This file tells Git which files to ignore. Your <code>.venv</code> folder should always be here — it's huge, machine-specific, and reproducible from <code>requirements.txt</code>. So is <code>.env</code> (environment variables, often containing API keys — never commit these).
+      </div>
+      <div class="sn-item">
+        <strong>README.md</strong> — The homepage of your repository on GitHub. Write what the project does, how to install dependencies, and how to run it. This is the first thing anyone reads.
+      </div>
+      <div class="sn-item">
+        <strong>requirements.txt</strong> — The list of packages your project needs. Anyone cloning the project runs <code>pip install -r requirements.txt</code> to get everything installed. The equivalent with poetry is <code>pyproject.toml</code>.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="page-nav">
+  <a href="tools.html" class="btn-ghost">← The Tools</a>
+  <a href="stacks.html" class="btn-primary">Choose Your Stack →</a>
+</div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-nav">
+      <a href="index.html">Overview</a>
+      <a href="tools.html">The Tools</a>
+      <a href="workflow.html">How It Connects</a>
+      <a href="stacks.html">Choose Your Stack</a>
+      <a href="start.html">Get Started</a>
+    </div>
+    <p class="footer-note">A clear guide to modern Python development — tools, workflow, and AI.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
